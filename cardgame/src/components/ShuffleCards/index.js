@@ -2,17 +2,19 @@ import React from "react";
 
 import cards from "../.././cards.json";
 
+console.log(cards);
 
 
 
 handleRandom = ()=>{ 
-console.log(cards)
+
+  state ={
+      randomCards:randomCardsArray,
+     
+    }
 
 
-    state ={
-        randomCards:randomCardsArray,
-       
-      }
+
     
     let randomCardsArray=[]
     const randomCards = cards.slice(0)
@@ -30,8 +32,12 @@ console.log(cards)
     randomCardsArray:randomCards,
 
   });
+  
+  return(
+    console.log(cards)
+  
+  )
 }
-
 
 export default handleRandom;
 
