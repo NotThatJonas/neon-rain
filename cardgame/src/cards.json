@@ -34,6 +34,7 @@
     {
         "id": 5,
         "name": "Defense",
+        "armor": 3,
         "image": "TBD",
         "class": "battleMage",
         "type": "Action" 
@@ -41,6 +42,7 @@
     {
         "id": 6,
         "name": "Defense",
+        "armor": 3,
         "image": "TBD",
         "class": "battleMage",
         "type": "Action" 
@@ -48,6 +50,7 @@
     {
         "id": 7,
         "name": "Defense",
+        "armor": 3,
         "image": "TBD",
         "class": "battleMage",
         "type": "Action" 
@@ -55,6 +58,7 @@
     {
         "id": 8,
         "name": "Defense",
+        "armor": 3,
         "image": "TBD",
         "class": "battleMage",
         "type": "Action" 
@@ -63,6 +67,7 @@
         "id": 9,
         "name": "Spell One",
         "image": "TBD",
+        "effect": null,
         "class": "battleMage",
         "type": "Spell" 
     },
@@ -70,6 +75,7 @@
         "id": 10,
         "name": "Spell Two",
         "image": "TBD",
+        "effect": null,
         "class": "battleMage",
         "type": "Spell" 
     }
