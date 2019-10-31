@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-// import handleRandom from "./components/ShuffleCards";
-import cards from "./cards.json"
+// import React, { Component } from "react";
+// // import handleRandom from "./components/ShuffleCards";
+// import cards from "./cards.json"
 
 class Cards extends Component {
 
@@ -43,14 +43,30 @@ handleRandom = (cards)=>{
   
   )
 }
-
-
-
+}
+import React from 'react';
+import Card from "./components/cards"
+import PlayArea from "./components/playArea"
+function App() {
+  return (
+    <div>
+      <PlayArea/>
+      <div className="row d-flex justify-content-center">
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      <Card/>
+      </div>
+    </div>
+  );
 }
 
 
 
 
-export default Cards;
 
 
+
+
+// export default Cards
