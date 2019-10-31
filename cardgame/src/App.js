@@ -1,4 +1,11 @@
 import React from 'react';
+import handleRandom from "./components/ShuffleCards"
+
+
+
+
+
+
 
 
 function App() {
@@ -8,5 +15,6 @@ function App() {
     </div>
   );
 }
+
 
 export default App;
