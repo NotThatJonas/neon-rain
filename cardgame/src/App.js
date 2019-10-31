@@ -14,7 +14,7 @@ componentDidMount() {
   this.handleRandom(cards);
 }
 
-handleRandom = ()=>{ 
+handleRandom = (cards)=>{ 
 
  
 
