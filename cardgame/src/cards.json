@@ -4,6 +4,7 @@
         "name": "Attack",
         "damage": 5,
         "image": "TBD",
+        "text": "This Card does 5 damage to the enemy",
         "class": "battleMage",
         "type": "Action" 
     },
@@ -12,6 +13,7 @@
         "name": "Attack",
         "damage": 5,
         "image": "TBD",
+        "text": "This Card does 5 damage to the enemy!",
         "class": "battleMage",
         "type": "Action" 
     },
@@ -20,6 +22,7 @@
         "name": "Attack",
         "damage": 5,
         "image": "TBD",
+        "text": "This Card does 5 damage to the enemy!!",
         "class": "battleMage",
         "type": "Action" 
     },
@@ -28,6 +31,7 @@
         "name": "Attack",
         "damage": 5,
         "image": "TBD",
+        "text": "This Card does 5 damage to the enemy!!!",
         "class": "battleMage",
         "type": "Action" 
     },
@@ -36,6 +40,7 @@
         "name": "Defense",
         "armor": 3,
         "image": "TBD",
+        "text": "This card increase your armor by 3 pts until next turn",
         "class": "battleMage",
         "type": "Action" 
     },
@@ -44,6 +49,7 @@
         "name": "Defense",
         "armor": 3,
         "image": "TBD",
+        "text": "This card increase your armor by 3 pts until next turn!",
         "class": "battleMage",
         "type": "Action" 
     },
@@ -52,6 +58,7 @@
         "name": "Defense",
         "armor": 3,
         "image": "TBD",
+        "text": "This card increase your armor by 3 pts until next turn!!",
         "class": "battleMage",
         "type": "Action" 
     },
@@ -60,6 +67,7 @@
         "name": "Defense",
         "armor": 3,
         "image": "TBD",
+        "text": "This card increase your armor by 3 pts until next turn!!",
         "class": "battleMage",
         "type": "Action" 
     },
@@ -68,6 +76,7 @@
         "name": "Spell One",
         "image": "TBD",
         "effect": null,
+        "text": "This spell increase the damage of your next 2 attacks by 3",
         "class": "battleMage",
         "type": "Spell" 
     },
@@ -76,6 +85,9 @@
         "name": "Spell Two",
         "image": "TBD",
         "effect": null,
+        "text": "This spell does 8 direct damage to the enemy, you take 2 damage",
+        "damage": 8,
+        "selfdamage": 2,
         "class": "battleMage",
         "type": "Spell" 
     }
