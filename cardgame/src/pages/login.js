@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Form from "../components/Form";
-import Login from "../components/login"
+// import Form from "../components/Form";
+import Login from "../components/home"
 
 
 
