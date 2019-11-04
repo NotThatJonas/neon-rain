@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import deckjson from "../../cards.json";
+import deckJson from "../../cards.json";
 
 class DeckBrain extends Component {
   state = {
@@ -8,10 +8,14 @@ class DeckBrain extends Component {
     discard: [],
   };
   componentWillMount = () => {
-     const shuffledDeck = this.shuffleCards(deckjson)
+     const shuffledDeck = this.shuffleCards(deckJson)
      this.setState({
          deck: shuffledDeck
      })
+     console.log(this.state.deck)
+  }
+  componentDidMount = () => {
+    this.drawcards()
   }
 
   drawcards = () => {
@@ -34,9 +38,9 @@ class DeckBrain extends Component {
       discard: tempDiscard
     });
   };
-}
 
-shuffleCards = cards => {
+
+shuffleCards = (cards) => {
   let randomCardsArray = [];
   let originalCards = cards.slice(0);
 
@@ -47,6 +51,12 @@ shuffleCards = cards => {
   }
 
   return randomCardsArray;
+
+
 };
+
+
+}
+
 
 export default DeckBrain;
