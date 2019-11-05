@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./style.css";
-class Login extends Component {
+class Home extends Component {
   state = {
     username: "",
     password: ""
@@ -38,7 +38,7 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default Home;
 
 //   <div className="modal-dialog" role="document">
 //             <div className="modal-content">
