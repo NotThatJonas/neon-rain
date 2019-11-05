@@ -10,7 +10,6 @@
 }
 
 .neon1{
-
     font-size: 1.5em;
     color:black!important ;
     background-color:#B6379E ;
@@ -72,6 +71,6 @@ form.example input[type=text] {
     will-change: transform;
   }
   .home-inner {
-    background-image: url(./neoncity.gif);
+    background-image: url(./neoncity.gif) !important ;
     
   }

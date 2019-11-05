@@ -1,20 +1,20 @@
 import React, { Component } from "react";
-// import "./style.css";
+import "./style1.css";
 
 class Leaderboards extends Component {
   render() {
     return (
       <div>
-        <div className="landing">
-          <div className="home-wrap">
-            <div className="home-inner"></div>
+        <div className="landing1">
+          <div className="home-wrap1">
+            <div className="home-inner1"></div>
           </div>
         </div>
           <div className="container">
             <div>
-              <h1 className="neon2 head">Leaderboard</h1>
+              <h1 className="neon3 head">Leaderboard</h1>
             </div>
-            <div className=" neon1 nes-table-responsive">
+            <div className=" neon2 nes-table-responsive">
               <table className="nes-table is-bordered is-dark">
                 <thead>
                   <tr>
