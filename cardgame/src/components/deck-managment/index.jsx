@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards"
+import PlayArea from "../../components/playArea"
 class DeckBrain extends Component {
   state = {
     deck: [],
@@ -10,15 +11,16 @@ class DeckBrain extends Component {
   componentWillMount = () => {
      const shuffledDeck = this.shuffleCards(deckJson)
      console.log(shuffledDeck)
+     
      this.setState({
          deck: shuffledDeck
-     })
+     }, this.drawcards)
+
+     
   }
   componentDidMount = () => {
-    this.drawcards()
     
   }
-
 
 
 
@@ -38,6 +40,8 @@ class DeckBrain extends Component {
       let tempCard = tempDeck.shift();
       tempHand.push(tempCard);
     }
+    console.log(tempHand);
+    
     this.setState({
       hand: tempHand,
       deck: tempDeck,
@@ -59,21 +63,32 @@ shuffleCards = (cards) => {
 
   return randomCardsArray;
 
-
-
-
-
+  
 }
 // console.log(this.state.deck)
 render() {
-  return(
-    <div>
-      {/* {this.state.hand?this.state.hand.map(cardObj=><Card/>):<Loading/>} */}
-      {/* <Cards image ={this.state.hand[0].image} 
-             name = {this.state.hand[0].name} 
-             text = {this.state.hand[0].text} /> */}
-    </div>
-  )
-}
+     
+  return (
+      <div className= "d-flex justify-content-center">
+          <PlayArea/>
+          {this.state.hand.length>0?(<div>
+            <Cards name={this.state.hand[0].name}
+            image={this.state.hand[0].image}
+            text={this.state.hand[0].text}/>
+            <Cards name={this.state.hand[1].name}
+            image={this.state.hand[1].image}
+            text={this.state.hand[1].text}/> 
+            <Cards name={this.state.hand[2].name}
+            image={this.state.hand[2].image}
+            text={this.state.hand[2].text}/> 
+            <Cards name={this.state.hand[3].name}
+            image={this.state.hand[3].image}
+            text={this.state.hand[3].text}/> 
+            <Cards name={this.state.hand[4].name}
+            image={this.state.hand[4].image}
+            text={this.state.hand[4].text}/>
+          </div>):<h3>Loading.....</h3>}
+      </div>
+  )}
 };
 export default DeckBrain;

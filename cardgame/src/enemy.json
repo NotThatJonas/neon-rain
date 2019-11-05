@@ -13,6 +13,8 @@
         "id": 2,
         "name": "Enemy 2",
         "health":150,
+        "actions":["attack","armor"],
+        "attackValues":[8,5],
         "attack": 10,
         "armor": 7,
         "image": "TBD",
