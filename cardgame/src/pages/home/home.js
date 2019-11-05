@@ -7,16 +7,16 @@ class Home extends Component {
   };
 
   render() {
-    // Notice how each input has a `value`, `name`, and `onChange` prop
+
     return (
       <div>
-        <div class="landing">
-          <div class="home-wrap">
-            <div class="home-inner"></div>
+        <div className="landing">
+          <div className="home-wrap">
+            <div className="home-inner"></div>
           </div>
         </div>
 
-        <div class="caption text-center nes-pointer">
+        <div className="caption text-center nes-pointer">
           <button type="button" className="btn nes-pointer neon1 mb-3 nes-btn">
             Start New
           </button>
