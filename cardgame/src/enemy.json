@@ -3,6 +3,7 @@
         "id": 1,
         "name": "Enemy 1",
         "health":100,
+        "actions":[{"attack": 5, "armor": 3}],
         "attack": 5,
         "armor": 3,
         "image": "TBD",
