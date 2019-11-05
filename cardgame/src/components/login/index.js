@@ -53,32 +53,4 @@ export default Login;
 
 
 
-        //   <div className="modal-dialog" role="document">
-        //             <div className="modal-content">
-        //                 <div className="modal-header">
-        //                     <h5 className="modal-title" id="mymodal">Create Account</h5>
-        //                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-        //                         <span aria-hidden="true">&times;</span>
-        //                     </button>
-        //                 </div>
-        //                 <div className="modal-body">
-        //                     <form className="create-form">
-        //                         <div className="form-group">
-        //                             <label for="email" className="col-form-label">Username:</label>
-        //                             <input type="text" className="form-control" id="email">
-        //                             </input>
-        //                         </div>
-        //                         <div className="form-group">
-        //                             <label for="password" className="col-form-label">Password:</label>
-        //                             <input type="password" className="form-control" id="password">
-        //                             </input>
-        //                         </div>
-
-        //                     </form>
-        //                 </div>
-        //                 <div className="modal-footer">
-        //                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-        //                     <button type="button" className="btn btn-primary" data-dismiss="modal" id="create-user">Create Profile</button>
-        //                 </div>
-        //             </div>
-        //         </div>
+      

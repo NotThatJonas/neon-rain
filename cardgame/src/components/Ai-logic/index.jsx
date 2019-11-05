@@ -1,48 +1,129 @@
 import React, { Component } from "react";
 import enemies from "../../enemy.json";
+import cards from "../../cards.json";
 
 class AiBrain extends Component {
   state = {
-    enemy: [],
-    actions: [],
+    userHealth: 100,
+    userArmor: 0,
+    enemyHealth: enemies[0].health,
+    enemyArmor: enemies[0].armor,
+    winCount=0
   };
 
-  componentDidMount = () => {
-    const newEnemy = this.whichEnemy(enemies);
-    const newAction = this.enemyTurn(this.state.enemy);
+  cardChoice = id => {
+    switch (id) {
+      case "1":
+        userAttack(this.cards[id - 1].damage);
+        return;
+
+      case "2":
+        armor(this.cards[id - 1].armor);
+        return;
+    }
+  };
+
+winRound = () => {
+let newWinCount=(this.state.winCount+1)
+this.setState=({
+  winCount:newWinCount
+})
+
+
+
+}
+
+
+
+
+  userAttack = damage => {
+    let newArmor;
+    let newHealth;
+    let newDamage;
+    if (this.state.enemyArmor >= damage) {
+      let tempArmor = this.state.enemyArmor;
+      newArmor = tempArmor - damage;
+      this.setState({
+        enemyArmor: newArmor
+      });
+    } else {
+      newDamage = damage - this.state.enemyArmor;
+      let tempHealth = this.state.enemyHealth;
+      newHealth = tempHealth - newDamage;
+      if(newHealth<=0){
+        winRound()
+      }
+
+      this.setState({
+        enemyHealth: newHealth
+      });
+    }
+  };
+
+  armor = armor => {
+    let newArmor = this.state.userArmor + armor;
     this.setState({
-      enemy: newEnemy,
-      actions: newAction,
+      userArmor: newArmor
     });
   };
 
-  whichEnemy = enemies => {
-    newEnemyArray = [];
-    for (let i = 0; i < enemies.length; i++) {
-      if ((this.state.enemy.id =enemies[i].id)) {
-        newEnemyArray.push(enemies[i]);
-      }
-    }
-    return newEnemyArray;
-  };
 
-  enemyTurn = enemy => {
-    let randomAction = [];
-    let possibleActions = [];
-    for (let j = 0; j < enemy.length; j++) {
-      let enemyAttack = enemy[j].attack;
-      let enemyArmor = enemy[j].armor;
-      possibleActions.push(enemyAttack);
-      possibleActions.push(enemyArmor);
+
+ 
+
+setEnemyValues = enemies => {
+  this.setState({
+    enemyHealth: enemies[this.state.winCount].health,
+    enemyArmor: enemies[this.state.winCount].armor
+  })
+}
+
+
+
+
+
+  firstEnemyAction = enemy => {
+    let possibleEnemyActions=[]
+    let newEnemyAttack=0
+    let newEnemyArmor=0
+    for (let k = 0; k < enemies.length; k++) {
+       if(id===newWinCount){
+         newEnemyAttack=enemies[k].attack 
+         newEnemyArmor=enemies[k].armor 
+        possibleEnemyActions=enemies[k].actions
+       }
+      
     }
-    while (possibleActions.length) {
-      let randomAction = Math.floor(Math.random() * possibleActions.length);
-      let action = possibleActions.splice(randomAction, 1)[0];
-      randomAction.push(action);
+
+
+
+
+
+    let randomAction;
+    let randomAction = Math.floor(Math.random() * possibleEnemyActions.length);
+    switch (randomAction) {
+      case 1:
+        if (this.state.userArmor >= newEnemyAttack) {
+          let newArmor = this.state.userArmor - newEnemyAttack;
+          this.setState({
+            userArmor: newArmor
+          });
+        } else {
+          let newAttack = newEnemyAttack - this.state.userAttack;
+          let newHealth = this.state.userHealth - newAttack;
+          this.setState({
+            userHealth: newHealth,
+            userArmor: 0
+          });
+        }
+      case 2:
+        let newArmor = this.state.enemyArmor + newEnemyArmor;
+        this.setState({
+          enemyArmor: newArmor
+        });
     }
-    return randomAction;
   };
+  //render user health
 }
 
 export default AiBrain;
-

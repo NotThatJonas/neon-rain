@@ -1,16 +1,4 @@
-import React, { Component } from "react";
-import ShuffleCards from "./components/ShuffleCards";
-import cards from "./cards.json"
 
-
-
-
-console.log("cards ",cards)
-
-
-
-
-export default Cards
 import React from 'react';
 import Card from "./components/cards"
 import PlayArea from "./components/playArea"
