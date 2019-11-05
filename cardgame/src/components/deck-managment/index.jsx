@@ -7,6 +7,7 @@ class DeckBrain extends Component {
     deck: [],
     hand: [],
     discard: [],
+    playArea: []
   };
   componentWillMount = () => {
      const shuffledDeck = this.shuffleCards(deckJson)
@@ -20,7 +21,12 @@ class DeckBrain extends Component {
   }
   componentDidMount = () => {
     
+
   }
+  // componentDidMount = () => {
+  //   this.drawcards()
+  //   console.log(this.state.hand)
+  // }
 
 
 
@@ -65,9 +71,38 @@ shuffleCards = (cards) => {
 
   
 }
+
+toPlay = (index) => {
+
+  if(this.state.playArea.length<2){
+
+    let card = this.state.hand[index]
+    let tempHand = this.state.hand
+    let tempPlay = []
+    tempPlay.push(card)
+    tempHand.splice(index , 1)
+    
+    this.state({
+      hand: tempHand,
+      playArea: tempPlay
+    })
+  }else {
+    alert("exceeded play limit")
+  }
+}
+discardPlayed = () =>{
+
+    let tempDiscard = this.state.playArea
+    this.setState({
+      discard: tempDiscard,
+      playArea: []
+    })
+
+}
+
+} 
 // console.log(this.state.deck)
 render() {
-     
   return (
       <div className= "d-flex justify-content-center">
           <PlayArea/>
@@ -91,4 +126,5 @@ render() {
       </div>
   )}
 };
+
 export default DeckBrain;
