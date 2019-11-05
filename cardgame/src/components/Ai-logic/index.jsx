@@ -95,14 +95,13 @@ setEnemyValues = enemies => {
       
     }
 
-
-
-
-
     let randomAction;
     let randomAction = Math.floor(Math.random() * possibleEnemyActions.length);
+
     switch (randomAction) {
       case 1:
+      
+
         if (this.state.userArmor >= newEnemyAttack) {
           let newArmor = this.state.userArmor - newEnemyAttack;
           this.setState({
