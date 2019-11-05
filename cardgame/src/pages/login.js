@@ -1,16 +1,19 @@
 import React from 'react';
 
 // import Form from "../components/Form";
-import Login from "../components/home"
-
+// import Login from "../components/home"
+import Leaderboards from '../components/leaderboard';
 
 
 function App() {
 
     return (
-        <Login>
+        <div>
+            <Leaderboards/>
+            {/* <Login/> */}
 
-        </Login>
+        </div>
+
 
        
        
