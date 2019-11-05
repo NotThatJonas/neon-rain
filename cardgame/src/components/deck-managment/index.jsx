@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import deckJson from "../../cards.json";
-
+import Cards from "../cards"
 class DeckBrain extends Component {
   state = {
     deck: [],
@@ -9,22 +9,28 @@ class DeckBrain extends Component {
   };
   componentWillMount = () => {
      const shuffledDeck = this.shuffleCards(deckJson)
+     console.log(shuffledDeck)
      this.setState({
          deck: shuffledDeck
      })
-     console.log(this.state.deck)
   }
   componentDidMount = () => {
     this.drawcards()
+    
   }
 
+
+
+
   drawcards = () => {
+    console.log(this.state.deck)
     let tempDeck = [...this.state.deck];
     const tempHand = [...this.state.hand];
     let tempDiscard = [...this.state.discard];
     while (tempHand.length < 5) {
-      if (tempDeck.length === 0 || tempDeck.length === 1) {
+      if (tempDeck.length   <= 1) {
         // When the deck is empty or near empty, shuffle the discard, and then add it to the deck
+        debugger
         const shuffled = this.shuffleCards(tempDiscard);
         tempDeck = [...tempDeck, ...shuffled.splice(0)];
         let tempDiscard = shuffled;
@@ -37,6 +43,7 @@ class DeckBrain extends Component {
       deck: tempDeck,
       discard: tempDiscard
     });
+    
   };
 
 
@@ -53,10 +60,20 @@ shuffleCards = (cards) => {
   return randomCardsArray;
 
 
-};
+
 
 
 }
-
-
+// console.log(this.state.deck)
+render() {
+  return(
+    <div>
+      {/* {this.state.hand?this.state.hand.map(cardObj=><Card/>):<Loading/>} */}
+      {/* <Cards image ={this.state.hand[0].image} 
+             name = {this.state.hand[0].name} 
+             text = {this.state.hand[0].text} /> */}
+    </div>
+  )
+}
+};
 export default DeckBrain;
