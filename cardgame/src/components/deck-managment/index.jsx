@@ -6,7 +6,8 @@ class DeckBrain extends Component {
   state = {
     deck: [],
     hand: [],
-    discard: []
+    discard: [],
+    playArea: []
   };
   componentWillMount = () => {
     const shuffledDeck = this.shuffleCards(deckJson);
