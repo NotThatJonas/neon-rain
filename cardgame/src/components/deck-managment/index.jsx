@@ -6,6 +6,7 @@ class DeckBrain extends Component {
     deck: [],
     hand: [],
     discard: [],
+    playArea: []
   };
   componentWillMount = () => {
      const shuffledDeck = this.shuffleCards(deckJson)
@@ -64,7 +65,21 @@ shuffleCards = (cards) => {
 
 
 }
-// console.log(this.state.deck)
+
+toPlayArea = (index) => {
+  if(playArea<2){
+  let card = this.state.hand[index]
+  let tempArray = tempArray.push(card)
+  let tempHand = this.state.hand
+  tempHand.splice(index, 1)
+  this.setState({
+    playArea: tempArray,
+    hand: tempHand
+  })
+  }else {
+    alert("you may only play 2 cards per turn!")
+  }
+}
 render() {
   return(
     <div>
@@ -72,6 +87,7 @@ render() {
       {/* <Cards image ={this.state.hand[0].image} 
              name = {this.state.hand[0].name} 
              text = {this.state.hand[0].text} /> */}
+             <Card onCLick= {this.toPlayArea(0)}/>
     </div>
   )
 }
