@@ -1,14 +1,79 @@
 import React, { Component } from "react";
 import "./style.css";
+import axios from "axios";
+import LoginForm from "../../components/login"
+import resumeForm from "../../components/resume"
+
 class Home extends Component {
   state = {
     username: "",
-    password: ""
+    password: "",
+    loggedInUser:"",
+    show: false,
+    url:"http://localhost:8080",
+    // url:"https://manateepi.herokuapp.com",
   };
+
+  showLogin = () => {
+      this.setState({
+      show: true
+    })
+    console.log("we made it here");
+    
+  }
+
+  showResume = () => {
+    this.setState({
+    show: true
+  })
+  console.log("we test it here");
+  
+}
+
+  componentDidMount(){
+    this.readSessions();
+  }
+
+  readSessions = ()=>{
+    axios.get(`${this.state.url}/auth/readsessions`,{withCredentials:true}).then(res=>{
+      console.log(res.data)
+      this.setState({loggedInUser:res.data.user})
+    })
+  }
+
+  handleChange= event=>{
+    const {name,value}=event.target;
+    this.setState({
+      [name]:value
+    })
+  }
+
+  handleLoginFormSubmit = event=>{
+    console.log("we mafre it here!!!");
+    if(event){
+      event.preventDefault();
+    }
+    axios.post(`${this.state.url}/auth/login`,{name:this.state.username,password:this.state.password},{withCredentials:true}).then(res=>{
+      console.log(res.data,res.status)
+      this.setState({
+        username:"",
+        password:"",
+        loggedInUser:res.data.user
+      });
+    }).catch(err=>{
+      console.log(err.response);
+      this.setState({
+        username:"",
+        password:"",
+        loggedInUser:""
+      })
+    })
+  }
 
   render() {
 
     return (
+      
       <div>
         <div className="landing">
           <div className="home-wrap">
@@ -17,16 +82,17 @@ class Home extends Component {
         </div>
 
         <div className="caption text-center nes-pointer">
-          <button type="button" className="btn nes-pointer neon1 mb-3 nes-btn">
+           <LoginForm show={this.state.show}>
+           <form>
+                <input name="name" value={this.props.username} onChange={this.handleChange} />
+                <input name="password" value={this.props.password} type="password" onChange={this.handleChange} />
+                <input type="submit" onClick={this.handleLoginFormSubmit} />
+            </form>
+           </LoginForm>
+          <button onClick={this.showLogin} type="button" className="btn nes-pointer neon1 mb-3 nes-btn">
             Start New
           </button>
-
-          <button
-            type="button"
-            className="btn mb-3 neon1 nes-pointer nes-btn "
-            data-toggle="modal"
-            data-target="#exampleModal"
-          >
+           <button onClick={this.showResume} type="button" className="btn nes-pointer neon1 mb-3 nes-btn">
             Resume  
           </button>
           <button type="button" className="btn mb-3 neon1 nes-pointer nes-btn">
@@ -40,32 +106,10 @@ class Home extends Component {
 
 export default Home;
 
-//   <div className="modal-dialog" role="document">
-//             <div className="modal-content">
-//                 <div className="modal-header">
-//                     <h5 className="modal-title" id="mymodal">Create Account</h5>
-//                     <button type="button" className="close" data-dismiss="modal" aria-label="Close">
-//                         <span aria-hidden="true">&times;</span>
-//                     </button>
-//                 </div>
-//                 <div className="modal-body">
-//                     <form className="create-form">
-//                         <div className="form-group">
-//                             <label for="email" className="col-form-label">Username:</label>
-//                             <input type="text" className="form-control" id="email">
-//                             </input>
-//                         </div>
-//                         <div className="form-group">
-//                             <label for="password" className="col-form-label">Password:</label>
-//                             <input type="password" className="form-control" id="password">
-//                             </input>
-//                         </div>
-
-//                     </form>
-//                 </div>
-//                 <div className="modal-footer">
-//                     <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
-//                     <button type="button" className="btn btn-primary" data-dismiss="modal" id="create-user">Create Profile</button>
-//                 </div>
-//             </div>
-//         </div>
+          {/* <resumeForm show={this.state.show}>
+           <form>
+                <input name="name" value={this.props.username} onChange={this.handleChange} />
+                <input name="password" value={this.props.password} type="password" onChange={this.handleChange} />
+                <input type="submit" onClick={this.handleLoginFormSubmit} />
+            </form>
+           </resumeForm> */}

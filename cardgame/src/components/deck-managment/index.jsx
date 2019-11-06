@@ -79,6 +79,19 @@ class DeckBrain extends Component {
   }
 
 
+  toHand = (index) => {
+    let tempHand = this.state.hand
+    let card = this.state.playArea[index]
+    let tempPlay =this.state.playArea
+    tempHand.push(card)
+    tempPlay.splice(index, 1)
+  
+    this.setState({
+      hand: tempHand,
+      playArea: tempPlay
+  
+    })
+  }
   shuffleCards = cards => {
     let randomCardsArray = [];
     let originalCards = cards.slice(0);
@@ -94,11 +107,12 @@ class DeckBrain extends Component {
   // console.log(this.state.deck)
   render() {
     return (
+
       <div>
-        <div className="row">
-          <PlayArea />
+        <div className="row d-flex justify-content-center">
+       
           {this.state.playArea.length > 0 ? (
-            <div className="d-flex justify-content-center">
+            <div>
               {
                 <Cards
                   name={this.state.playArea[0].name}
@@ -110,20 +124,22 @@ class DeckBrain extends Component {
               }
             </div>
           ) : null}
-
-          {this.state.playArea.length > 1 ? (
-            <div className="d-flex justify-content-center">
-              {
-                <Cards
-                  name={this.state.playArea[1].name}
-                  image={this.state.playArea[1].image}
-                  text={this.state.playArea[1].text}
-                  handleClick={this.toHand}
-                  currentIndex={1}
-                />
-              }
-            </div>
-          ) : null}
+     
+    
+ 
+        {this.state.playArea.length >1 ? (
+           <div>
+           {<Cards
+             name={this.state.playArea[1].name}
+             image={this.state.playArea[1].image}
+             text={this.state.playArea[1].text}
+             handleClick= {this.toHand}
+             currentIndex={1}
+             
+           />}
+           </div>
+           ):null}
+         
         </div>
         <div className="row">
           {this.state.hand.length >= 3 ? (
@@ -137,13 +153,16 @@ class DeckBrain extends Component {
                   currentIndex={index}
                 />
               ))}
-            </div>
-          ) : null}
-        </div>
-        <button onclick="endTurn()" type="button" class="btn btn-primary">End Turn</button>
+                 </div>
+              ):null}
+              </div>
       </div>
-    );
-  }
-}
+    )
+             
+            
+        
+      
+    }
+              }         
 
 export default DeckBrain;
