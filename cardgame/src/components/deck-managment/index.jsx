@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards";
-import PlayArea from "../../components/playArea";
+
 class DeckBrain extends Component {
   state = {
     deck: [],
@@ -74,8 +74,9 @@ class DeckBrain extends Component {
 
   endTurn = ()=>{
     let playedCardsArray=[...this.state.playArea]
-
-    this.discardPlayed()
+    console.log(this.state.playArea);
+    
+    // this.discardPlayed()
   }
 
 
@@ -156,6 +157,9 @@ class DeckBrain extends Component {
                  </div>
               ):null}
               </div>
+              <button onclick={this.endTurn}>
+  End Turn
+</button>
       </div>
     )
              
