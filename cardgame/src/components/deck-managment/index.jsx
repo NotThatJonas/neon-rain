@@ -17,7 +17,7 @@ class DeckBrain extends Component {
       {
         deck: shuffledDeck
       },
-      this.drawcards
+      this.drawCards
     );
   };
 
@@ -40,14 +40,14 @@ class DeckBrain extends Component {
     }
   };
   discardPlayed = () => {
-    let tempDiscard = this.state.playArea;
+    let tempDiscard = [...this.state.playArea,...this.state.discard]
     this.setState({
       discard: tempDiscard,
       playArea: []
     });
   };
 
-  drawcards = () => {
+  drawCards = () => {
     console.log(this.state.deck);
     let tempDeck = [...this.state.deck];
     const tempHand = [...this.state.hand];
@@ -72,12 +72,7 @@ class DeckBrain extends Component {
     });
   };
 
-  endTurn = ()=>{
-    let playedCardsArray=[...this.state.playArea]
-    console.log(this.state.playArea);
-    
-    // this.discardPlayed()
-  }
+
 
 
   toHand = (index) => {
@@ -157,7 +152,10 @@ class DeckBrain extends Component {
                  </div>
               ):null}
               </div>
-              <button onclick={this.endTurn}>
+              {/* <button onclick= {console.log("clicked"), this.props.readPlayed}>
+  End Turn
+</button> */}
+<button onClick= {()=>this.props.readPlayed(this.state.playArea)}>
   End Turn
 </button>
       </div>
