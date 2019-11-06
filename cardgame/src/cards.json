@@ -3,7 +3,7 @@
         "id": 1,
         "name": "Attack",
         "damage": 5,
-        "image": "TBD",
+        "image": "https://cdn1.vectorstock.com/i/1000x1000/72/45/two-crossed-light-neon-swords-laser-sabers-war-vector-19807245.jpg",
         "text": "This Card does 5 damage to the enemy",
         "class": "battleMage",
         "type": "Action" 
@@ -12,7 +12,7 @@
         "id": 1,
         "name": "Attack",
         "damage": 5,
-        "image": "TBD",
+        "image": "https://cdn1.vectorstock.com/i/1000x1000/72/45/two-crossed-light-neon-swords-laser-sabers-war-vector-19807245.jpg",
         "text": "This Card does 5 damage to the enemy!",
         "class": "battleMage",
         "type": "Action" 
@@ -21,7 +21,7 @@
         "id": 1,
         "name": "Attack",
         "damage": 5,
-        "image": "TBD",
+        "image": "https://cdn1.vectorstock.com/i/1000x1000/72/45/two-crossed-light-neon-swords-laser-sabers-war-vector-19807245.jpg",
         "text": "This Card does 5 damage to the enemy!!",
         "class": "battleMage",
         "type": "Action" 
@@ -30,7 +30,7 @@
         "id": 1,
         "name": "Attack",
         "damage": 5,
-        "image": "TBD",
+        "image": "https://cdn1.vectorstock.com/i/1000x1000/72/45/two-crossed-light-neon-swords-laser-sabers-war-vector-19807245.jpg",
         "text": "This Card does 5 damage to the enemy!!!",
         "class": "battleMage",
         "type": "Action" 
