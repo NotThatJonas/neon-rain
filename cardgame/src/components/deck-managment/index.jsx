@@ -76,6 +76,19 @@ class DeckBrain extends Component {
     });
   };
 
+  toHand = (index) => {
+    let tempHand = this.state.hand
+    let card = this.state.playArea[index]
+    let tempPlay =this.state.playArea
+    tempHand.push(card)
+    tempPlay.splice(index, 1)
+  
+    this.setState({
+      hand: tempHand,
+      playArea: tempPlay
+  
+    })
+  }
   shuffleCards = cards => {
     let randomCardsArray = [];
     let originalCards = cards.slice(0);
@@ -91,26 +104,30 @@ class DeckBrain extends Component {
   // console.log(this.state.deck)
   render() {
     return (
+
       <div>
-        <div className="row">
-          <PlayArea/>
-        {this.state.playArea.length >0 ? (
-          <div className="d-flex justify-content-center">
+        <div className="row d-flex justify-content-center">
+        {this.state.playArea.length > 0 ? (
+          <div>
             {<Cards
              name={this.state.playArea[0].name}
              image={this.state.playArea[0].image}
              text={this.state.playArea[0].text}
+             handleClick = {this.toHand}
+             currentIndex = {0}
 
            />}
             </div>
- ):null}
+              ):null}
  
         {this.state.playArea.length >1 ? (
-           <div className="d-flex justify-content-center">
+           <div>
            {<Cards
              name={this.state.playArea[1].name}
              image={this.state.playArea[1].image}
              text={this.state.playArea[1].text}
+             handleClick= {this.toHand}
+             currentIndex={1}
              
            />}
            </div>
@@ -134,13 +151,14 @@ class DeckBrain extends Component {
               ))}
                  </div>
               ):null}
-
+              </div>
+      </div>
+    )
              
             
         
-        </div>
-      </div>
-    )};
-              }
+      
+    }
+              }         
 
 export default DeckBrain;
