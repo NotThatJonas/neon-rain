@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import enemies from "../../enemy.json";
 import cards from "../../cards.json";
-
+import DeckBrain from "../deck-managment"
 class AiBrain extends Component {
   state = {
     userHealth: 100,
@@ -10,6 +10,8 @@ class AiBrain extends Component {
     enemyArmor: enemies[0].armor,
     winCount=0
   };
+
+  
 
   cardChoice = id => {
     switch (id) {

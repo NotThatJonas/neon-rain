@@ -21,35 +21,31 @@ class DeckBrain extends Component {
     );
   };
 
-  toPlay = (index) => {
-
-    if(this.state.playArea.length<2){
+  toPlay = index => {
+    if (this.state.playArea.length < 2) {
       // console.log(this.state.hand);
-      
-      let card = this.state.hand[index]
-      let tempHand = this.state.hand
-      let tempPlay = this.state.playArea
-      tempPlay.push(card)
-      tempHand.splice(index , 1)
-      
+
+      let card = this.state.hand[index];
+      let tempHand = this.state.hand;
+      let tempPlay = this.state.playArea;
+      tempPlay.push(card);
+      tempHand.splice(index, 1);
+
       this.setState({
         hand: tempHand,
         playArea: tempPlay
-      })
-    }else {
-      alert("exceeded play limit")
+      });
+    } else {
+      alert("exceeded play limit");
     }
-  }
-  discardPlayed = () =>{
-  
-      let tempDiscard = this.state.playArea
-      this.setState({
-        discard: tempDiscard,
-        playArea: []
-      })
-  
-  }
-
+  };
+  discardPlayed = () => {
+    let tempDiscard = this.state.playArea;
+    this.setState({
+      discard: tempDiscard,
+      playArea: []
+    });
+  };
 
   drawcards = () => {
     console.log(this.state.deck);
@@ -76,6 +72,13 @@ class DeckBrain extends Component {
     });
   };
 
+  endTurn = ()=>{
+    let playedCardsArray=[...this.state.playArea]
+
+    this.discardPlayed()
+  }
+
+
   shuffleCards = cards => {
     let randomCardsArray = [];
     let originalCards = cards.slice(0);
@@ -93,54 +96,54 @@ class DeckBrain extends Component {
     return (
       <div>
         <div className="row">
-          <PlayArea/>
-        {this.state.playArea.length >0 ? (
-          <div className="d-flex justify-content-center">
-            {<Cards
-             name={this.state.playArea[0].name}
-             image={this.state.playArea[0].image}
-             text={this.state.playArea[0].text}
-
-           />}
+          <PlayArea />
+          {this.state.playArea.length > 0 ? (
+            <div className="d-flex justify-content-center">
+              {
+                <Cards
+                  name={this.state.playArea[0].name}
+                  image={this.state.playArea[0].image}
+                  text={this.state.playArea[0].text}
+                  handleClick={this.toHand}
+                  currentIndex={0}
+                />
+              }
             </div>
- ):null}
- 
-        {this.state.playArea.length >1 ? (
-           <div className="d-flex justify-content-center">
-           {<Cards
-             name={this.state.playArea[1].name}
-             image={this.state.playArea[1].image}
-             text={this.state.playArea[1].text}
-             
-           />}
-           </div>
-           ):null}
-         
+          ) : null}
+
+          {this.state.playArea.length > 1 ? (
+            <div className="d-flex justify-content-center">
+              {
+                <Cards
+                  name={this.state.playArea[1].name}
+                  image={this.state.playArea[1].image}
+                  text={this.state.playArea[1].text}
+                  handleClick={this.toHand}
+                  currentIndex={1}
+                />
+              }
+            </div>
+          ) : null}
         </div>
         <div className="row">
-         
-            {this.state.hand.length >= 3 ? (
-              <div className= "d-flex justify-content-center">
-              
-              {this.state.hand.map((card, index)=>(
-                <Cards 
+          {this.state.hand.length >= 3 ? (
+            <div className="d-flex justify-content-center">
+              {this.state.hand.map((card, index) => (
+                <Cards
                   name={card.name}
                   image={card.image}
                   text={card.text}
                   handleClick={this.toPlay}
                   currentIndex={index}
                 />
-                
               ))}
-                 </div>
-              ):null}
-
-             
-            
-        
+            </div>
+          ) : null}
         </div>
+        <button onclick="endTurn()" type="button" class="btn btn-primary">End Turn</button>
       </div>
-    )};
-              }
+    );
+  }
+}
 
 export default DeckBrain;
