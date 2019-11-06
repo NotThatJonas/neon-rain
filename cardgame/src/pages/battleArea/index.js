@@ -85,13 +85,18 @@ class BattlePage extends Component {
     
     handlePlayedCards = (array)=>{
         let tempPlayed=array
-        
-        console.log(tempPlayed[0].id);
-        
-      this.cardChoice(tempPlayed[0].id)
-      this.cardChoice(tempPlayed[1].id)
-      console.log(this.state.enemyHealth);
-      console.log(this.state.userArmor);
+     
+        let self = this
+        setTimeout(()=>{
+            self.cardChoice(tempPlayed[0].id)
+
+      }, 20)
+        setTimeout(function(){
+            self.cardChoice(tempPlayed[1].id)
+
+      },10)
+    //   this.cardChoice(tempPlayed[1].id)
+
       
       
 
