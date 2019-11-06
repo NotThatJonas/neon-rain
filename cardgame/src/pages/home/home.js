@@ -10,7 +10,7 @@ class Home extends Component {
     password: "",
     loggedInUser:"",
     show: false,
-    url:"http://localhost:3000",
+    url:"http://localhost:8080",
     // url:"https://manateepi.herokuapp.com",
   };
 
