@@ -1,6 +1,6 @@
 import React from "react"
 import card from "../../cards.json"
-
+import"./style.css"
 
 function Cards(props) {
     return(
@@ -15,3 +15,4 @@ function Cards(props) {
 }
 
 export default Cards;
+
