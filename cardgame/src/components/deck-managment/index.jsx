@@ -20,7 +20,36 @@ class DeckBrain extends Component {
       this.drawcards
     );
   };
-  componentDidMount = () => {};
+
+  toPlay = (index) => {
+
+    if(this.state.playArea.length<2){
+      // console.log(this.state.hand);
+      
+      let card = this.state.hand[index]
+      let tempHand = this.state.hand
+      let tempPlay = this.state.playArea
+      tempPlay.push(card)
+      tempHand.splice(index , 1)
+      
+      this.setState({
+        hand: tempHand,
+        playArea: tempPlay
+      })
+    }else {
+      alert("exceeded play limit")
+    }
+  }
+  discardPlayed = () =>{
+  
+      let tempDiscard = this.state.playArea
+      this.setState({
+        discard: tempDiscard,
+        playArea: []
+      })
+  
+  }
+
 
   drawcards = () => {
     console.log(this.state.deck);
@@ -64,48 +93,54 @@ class DeckBrain extends Component {
     return (
       <div>
         <div className="row">
-          <div className="col-md-12">
-            <PlayArea />
-          </div>
-        </div>
+          <PlayArea/>
+        {this.state.playArea.length >0 ? (
+          <div className="d-flex justify-content-center">
+            {<Cards
+             name={this.state.playArea[0].name}
+             image={this.state.playArea[0].image}
+             text={this.state.playArea[0].text}
 
+           />}
+            </div>
+ ):null}
+ 
+        {this.state.playArea.length >1 ? (
+           <div className="d-flex justify-content-center">
+           {<Cards
+             name={this.state.playArea[1].name}
+             image={this.state.playArea[1].image}
+             text={this.state.playArea[1].text}
+             
+           />}
+           </div>
+           ):null}
+         
+        </div>
         <div className="row">
          
-            {this.state.hand.length > 0 ? (
+            {this.state.hand.length >= 3 ? (
               <div className= "d-flex justify-content-center">
-                <Cards
-                  name={this.state.hand[0].name}
-                  image={this.state.hand[0].image}
-                  text={this.state.hand[0].text}
+              
+              {this.state.hand.map((card, index)=>(
+                <Cards 
+                  name={card.name}
+                  image={card.image}
+                  text={card.text}
+                  handleClick={this.toPlay}
+                  currentIndex={index}
                 />
-                <Cards
-                  name={this.state.hand[1].name}
-                  image={this.state.hand[1].image}
-                  text={this.state.hand[1].text}
-                />
-                <Cards
-                  name={this.state.hand[2].name}
-                  image={this.state.hand[2].image}
-                  text={this.state.hand[2].text}
-                />
-                <Cards
-                  name={this.state.hand[3].name}
-                  image={this.state.hand[3].image}
-                  text={this.state.hand[3].text}
-                />
-                <Cards
-                  name={this.state.hand[4].name}
-                  image={this.state.hand[4].image}
-                  text={this.state.hand[4].text}
-                />
-              </div>
-            ) : (
-              <h3>Loading.....</h3>
-            )}
+                
+              ))}
+                 </div>
+              ):null}
+
+             
+            
         
         </div>
       </div>
-    );
-  }
-}
+    )};
+              }
+
 export default DeckBrain;
