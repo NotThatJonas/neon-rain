@@ -1,5 +1,18 @@
 
 .row{
 margin: 0%;
-height: 10%;
+}
+.playArea{
+    display: flex;
+    justify-content: center;
+}
+.playCard1{
+    width: 20%;
+   
+    padding: 10px;
+}
+.playCard2{
+    width: 20%;
+   
+    padding: 10px;
 }

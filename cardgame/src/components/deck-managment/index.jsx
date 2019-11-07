@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards";
 import PlayArea from "../../components/playArea";
-import style from "./style.css"
+import style from "./style.css";
 class DeckBrain extends Component {
   state = {
     deck: [],
@@ -100,56 +100,55 @@ class DeckBrain extends Component {
   // console.log(this.state.deck)
   render() {
     return (
-      
-      <div className="row">
+      <div>
+          {/* this is where the selected cards go */}
+          <div className="playArea ">
+            {this.state.playArea.length > 0 ? (
+              <div className="playCard1">
+                {
+                  <Cards
+                    name={this.state.playArea[0].name}
+                    image={this.state.playArea[0].image}
+                    text={this.state.playArea[0].text}
+                    handleClick={this.toHand}
+                    currentIndex={0}
+                  />
+                }
+              </div>
+            ) : null}
 
-        {/* this is where the selected cards go */}
-        <div className="playArea d-flex mx-auto " style={{width:"10%"}}>
-          {this.state.playArea.length > 0 ? (
-            <div>
-              {
-                <Cards
-                  name={this.state.playArea[0].name}
-                  image={this.state.playArea[0].image}
-                  text={this.state.playArea[0].text}
-                  handleClick={this.toHand}
-                  currentIndex={0}
-                />
-              }
-            </div>
-          ) : null}
-
-          {this.state.playArea.length > 1 ? (
-            <div>
-              {
-                <Cards
-                  name={this.state.playArea[1].name}
-                  image={this.state.playArea[1].image}
-                  text={this.state.playArea[1].text}
-                  handleClick={this.toHand}
-                  currentIndex={1}
-                />
-              }
-            </div>
-          ) : null}
-        </div>
+            {this.state.playArea.length > 1 ? (
+              <div className=" playCard2">
+                {
+                  <Cards
+                    name={this.state.playArea[1].name}
+                    image={this.state.playArea[1].image}
+                    text={this.state.playArea[1].text}
+                    handleClick={this.toHand}
+                    currentIndex={1}
+                    
+                  />
+                }
+              </div>
+            ) : null}
+          </div>
         {/* End of selected cards */}
-
-        <div>
-          {this.state.hand.length >= 3 ? (
-            <div className="d-flex justify-content-center">
-              {this.state.hand.map((card, index) => (
-                <Cards
-                  name={card.name}
-                  image={card.image}
-                  text={card.text}
-                  handleClick={this.toPlay}
-                  currentIndex={index}
-                />
-              ))}
-            </div>
-          ) : null}
-        </div>
+          <div>
+            {this.state.hand.length >= 3 ? (
+              <div className="row d-flex justify-content-center">
+                {this.state.hand.map((card, index) => (
+                  <Cards
+                    name={card.name}
+                    image={card.image}
+                    text={card.text}
+                    handleClick={this.toPlay}
+                    currentIndex={index}
+                    colSize={2}
+                  />
+                ))}
+              </div>
+            ) : null}
+          </div>
       </div>
     );
   }
