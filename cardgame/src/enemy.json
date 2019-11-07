@@ -1,20 +1,19 @@
 [
     {
-        "id": 1,
+        "id": 0,
         "name": "Enemy 1",
         "health":100,
-        "actions":[{"attack": 5, "armor": 3}],
+        "actions":[1,2],
         "attack": 5,
-        "armor": 3,
+        "armor": 0,
         "image": "TBD",
         "text": "This enemy is the first challenger"
     },
     {
-        "id": 2,
+        "id": 1,
         "name": "Enemy 2",
         "health":150,
-        "actions":["attack","armor"],
-        "attackValues":[8,5],
+        "actions":[1,2],
         "attack": 10,
         "armor": 7,
         "image": "TBD",
