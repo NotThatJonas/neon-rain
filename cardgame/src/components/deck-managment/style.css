@@ -1,18 +1,20 @@
+.row {
+  margin: 0%;
+}
+.playArea {
+  display: flex;
+  justify-content: center;
+}
+.playCard {
+  width: 20%;
+  padding: 10px;
+}
+.handArea {
+  display: flex;
+  justify-content: center;
+}
 
-.row{
-/* margin: 0%; */
+.handCard {
+  width: 20%;
+  padding: 10px;
 }
-/* .playArea{
-    display: flex;
-    justify-content: center;
-}
-.playCard1{
-    width: 20%;
-   
-    padding: 10px;
-}
-.playCard2{
-    width: 20%;
-   
-    padding: 10px;
-} */
