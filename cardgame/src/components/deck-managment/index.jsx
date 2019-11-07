@@ -25,17 +25,15 @@ class DeckBrain extends Component {
 
 
   componentDidUpdate(prevprops, prevState) {
-    console.log('current state', this.state);
-    console.log('prev state', prevState);
-    console.log('prev props', prevprops);
-    console.log('current prop', this.props)
     const turnEnded = this.state.turnEnded !== prevState.turnEnded;
     
     if (turnEnded) {
-      // do something
-      console.log('The turn ended')
       this.props.readPlayed(this.state.playArea)
-      
+      this.discardPlayed()
+      this.drawCards()
+      this.setState({
+        turnEnded: false
+      })
     }
   }
 
@@ -57,8 +55,11 @@ class DeckBrain extends Component {
       alert("exceeded play limit");
     }
   };
+
+
   discardPlayed = () => {
-    let tempDiscard = [...this.state.playArea,...this.state.discard]
+    let tempDiscard = [...this.state.playArea, ...this.state.discard]
+    console.log("playArea",this.state.playArea)
     this.setState({
       discard: tempDiscard,
       playArea: []
@@ -66,17 +67,18 @@ class DeckBrain extends Component {
   };
 
   drawCards = () => {
-    console.log(this.state.deck);
     let tempDeck = [...this.state.deck];
     const tempHand = [...this.state.hand];
     let tempDiscard = [...this.state.discard];
     while (tempHand.length < 5) {
       if (tempDeck.length <= 1) {
         // When the deck is empty or near empty, shuffle the discard, and then add it to the deck
-        debugger;
-        const shuffled = this.shuffleCards(tempDiscard);
+        let shuffled = this.shuffleCards(tempDiscard);
         tempDeck = [...tempDeck, ...shuffled.splice(0)];
-        let tempDiscard = shuffled;
+        tempDiscard = shuffled;
+        this.setState({
+          discard: tempDiscard
+        })
       }
       let tempCard = tempDeck.shift();
       tempHand.push(tempCard);
@@ -85,8 +87,7 @@ class DeckBrain extends Component {
 
     this.setState({
       hand: tempHand,
-      deck: tempDeck,
-      discard: tempDiscard
+      deck: tempDeck
     });
   };
 
@@ -149,7 +150,7 @@ class DeckBrain extends Component {
                 name={card.name}
                 image={card.image}
                 text={card.text}
-                handleClick={this.toPlay}
+                handleClick={this.toHand}
                 currentIndex={index}
             />
         )
