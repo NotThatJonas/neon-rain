@@ -8,9 +8,11 @@ class DeckBrain extends Component {
     deck: [],
     hand: [],
     discard: [],
-    playArea: []
+    playArea: [],
+    turnEnded: false
   };
-  componentWillMount = () => {
+
+  componentWillMount () {
     const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
 
@@ -21,6 +23,22 @@ class DeckBrain extends Component {
       this.drawCards
     );
   };
+
+
+  componentDidUpdate(prevprops, prevState) {
+    console.log('current state', this.state);
+    console.log('prev state', prevState);
+    console.log('prev props', prevprops);
+    console.log('current prop', this.props)
+    const turnEnded = this.state.turnEnded !== prevState.turnEnded;
+    
+    if (turnEnded) {
+      // do something
+      console.log('The turn ended')
+      this.props.readPlayed(this.state.playArea)
+      
+    }
+  }
 
   toPlay = index => {
     if (this.state.playArea.length < 2) {
@@ -73,7 +91,14 @@ class DeckBrain extends Component {
     });
   };
 
-
+  endTurn = () => {
+    console.log('ending turn')
+    this.setState({
+      turnEnded: true
+    })
+    
+    // this.discardPlayed()
+  }
 
 
   toHand = (index) => {
@@ -86,8 +111,10 @@ class DeckBrain extends Component {
     this.setState({
       hand: tempHand,
       playArea: tempPlay
-    });
-  };
+  
+    })
+  }
+
   shuffleCards = cards => {
     let randomCardsArray = [];
     let originalCards = cards.slice(0);
@@ -100,64 +127,56 @@ class DeckBrain extends Component {
 
     return randomCardsArray;
   };
-  // console.log(this.state.deck)
+
+
   render() {
+
+    const hand = (this.state.hand.map((card, index) => {
+        return (
+            <Cards
+                name={card.name}
+                image={card.image}
+                text={card.text}
+                handleClick={this.toPlay}
+                currentIndex={index}
+          />
+        )
+      })
+      )
+
+    const playArea = (this.state.playArea.map((card, index) => {
+        return (
+            <Cards
+                name={card.name}
+                image={card.image}
+                text={card.text}
+                handleClick={this.toPlay}
+                currentIndex={index}
+            />
+        )
+
+    })
+    )
+
     return (
-      <div>
-          {/* this is where the selected cards go */}
-          <div className="playArea ">
-            {this.state.playArea.length > 0 ? (
-              <div className="playCard1">
-                {
-                  <Cards
-                    name={this.state.playArea[0].name}
-                    image={this.state.playArea[0].image}
-                    text={this.state.playArea[0].text}
-                    handleClick={this.toHand}
-                    currentIndex={0}
-                  />
-                }
-              </div>
-            ) : null}
+        
+        <div id="gameArea">
+            <div className="row d-flex justify-content-center">
+                <button onClick={this.endTurn}>
+                 End Turn
+                </button>
+            </div>
+            <div className="row d-flex justify-content-center">
+                {playArea.length ? playArea : null}
+            </div>
+            <div className="row d-flex justify-content-center">
+                {hand.length ? hand : null}
+            </div>
+        </div>
 
-            {this.state.playArea.length > 1 ? (
-              <div className=" playCard2">
-                {
-                  <Cards
-                    name={this.state.playArea[1].name}
-                    image={this.state.playArea[1].image}
-                    text={this.state.playArea[1].text}
-                    handleClick={this.toHand}
-                    currentIndex={1}
-                    
-                  />
-                }
-              </div>
-            ) : null}
-          </div>
-        {/* End of selected cards */}
-          <div>
-            {this.state.hand.length >= 3 ? (
-              <div className="row d-flex justify-content-center">
-                {this.state.hand.map((card, index) => (
-                  <Cards
-                    name={card.name}
-                    image={card.image}
-                    text={card.text}
-                    handleClick={this.toPlay}
-                    currentIndex={index}
-                    colSize={2}
-                  />
-                ))}
-              </div>
-            ) : null}
-          </div>
-          <button onClick= {()=>this.props.readPlayed(this.state.playArea)}>
-  End Turn
-</button>
-      </div>
-    );
+    ) 
   }
-}
+  
 
+}
 export default DeckBrain;
