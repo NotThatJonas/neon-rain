@@ -15,18 +15,18 @@ class BattlePage extends Component {
     
     
     
-      cardChoice = (id) => {
+      // cardChoice = (id) => {
 
-        switch (id) {
-          case 1:
-            this.userAttack(5);
-            return;
+      //   switch (id) {
+      //     case 1:
+      //       this.userAttack(5);
+      //       return;
     
-          case 2:
-            this.armor(3);
-            return;
-        }
-      };
+      //     case 2:
+      //       this.armor(3);
+      //       return;
+      //   }
+      // };
     
     winRound = () => {
     let newWinCount=(this.state.winCount+1)
@@ -42,38 +42,34 @@ class BattlePage extends Component {
     
     
       userAttack = (damage) => {
-        let newArmor;
-        let newHealth;
+        let newArmor = 0
         let gameWon = false;
 
         if (this.state.enemyArmor >= damage) {
           let tempArmor = this.state.enemyArmor;
           newArmor = tempArmor - damage;
+          return {
+            newArmor,
+            gameWon
+          }
         } else {
           let newDamage = damage - this.state.enemyArmor;
           let tempHealth = this.state.enemyHealth;
-          newHealth = tempHealth - newDamage;
+          let newHealth = tempHealth - newDamage;
           if(newHealth<=0) {
             gameWon = true;
           }
-    
+          return {
+            newArmor,
+            newHealth,
+            gameWon
+          }
         }
-        return {
-          newArmor,
-          newHealth,
-          gameWon
-        }
+        
 
       };
     
-      armor = armor => {
-        let newArmor = this.state.userArmor + armor;
-        return newArmor;
-      };
-    
-    
-    
-     
+       
     
     setEnemyValues = enemies => {
       this.setState({
@@ -84,19 +80,7 @@ class BattlePage extends Component {
     
     
     handlePlayedCards = (playedCards) => {
-        let tempPlayed = playedCards
-     
-        // let self = this
-
-    
-        //   setTimeout(()=>{
-      //       self.cardChoice(tempPlayed[0].id)
-
-      // }, 20)
-      //   setTimeout(function(){
-      //       self.cardChoice(tempPlayed[1].id)
-
-      // },10)
+      let tempPlayed = playedCards
 
       let damage = 0;
       let armor = this.state.userArmor;
@@ -113,19 +97,14 @@ class BattlePage extends Component {
               return;
           }
       });
-      const {newArmor, newHealth, gameWon} = this.userAttack(damage)
+      let {newArmor, newHealth, gameWon} = this.userAttack(damage)
+
       this.setState({
         enemyArmor: newArmor,
         enemyHealth: newHealth,
         userArmor: armor
 
       })
-
-
-    //   this.cardChoice(tempPlayed[1].id)
-
-      
-      
 
     }
     
