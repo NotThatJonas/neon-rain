@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Axios from "axios";
+
 class Login extends Component {
   constructor() {
     super();
@@ -18,6 +20,16 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     };
+
+    Axios.post("/api/users/login", userData)
+      .then(data => {
+        console.log(data);
+        this.props.history.push("/battlepage");
+      })
+      .catch(err => {
+        console.log(err);
+      });
+
     console.log(userData);
   };
   render() {
@@ -37,29 +49,30 @@ class Login extends Component {
             <form noValidate onSubmit={this.onSubmit}>
               <div className="nes-field is-inline col s12">
                 <label htmlFor="username">Username</label>
-                <input  error={errors.username} value={this.state.username} onChange={this.onChange} type="username" id="username" className="nes-input" />
+                <input
+                  error={errors.username}
+                  value={this.state.username}
+                  onChange={this.onChange}
+                  type="username"
+                  id="username"
+                  className="nes-input"
+                />
               </div>
               <div className="nes-field is-inline col s12">
+                <label htmlFor="password">Password</label>
                 <input
-                  className="nes-input is-dark"
+                  className="nes-input"
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
                   id="password"
                   type="password"
                 />
-                <label htmlFor="password">Password</label>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
-                  style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
-                  }}
                   type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                  className="btn nes-pointer neon1 mb-3 nes-btn"
                 >
                   Login
                 </button>

@@ -28,12 +28,12 @@ class Home extends Component {
         </div>
 
         <div className="caption text-center nes-pointer">
-          <Link to="/login">
+          <Link to="/register">
           <button type="button" className="btn nes-pointer neon1 mb-3 nes-btn">
             Start New
             </button>
           </Link>
-          <Link to="/register">
+          <Link to="/login">
           <button type="button" className="btn nes-pointer neon1 mb-3 nes-btn">
             Resume  
           </button>
