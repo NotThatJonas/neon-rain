@@ -8,20 +8,21 @@ class BattlePage extends Component {
         userHealth: 100,
         userArmor: 0,
         enemyHealth: enemies[0].health,
-        enemyArmor: enemies[0].armor,
-        winCount: 0
+        enemyArmor: 0,
+        winCount: 0,
+        playedCards: []
       };
     
     
     
       cardChoice = id => {
         switch (id) {
-          case "1":
-            this.userAttack(this.cards[id - 1].damage);
+          case 1:
+            this.userAttack(5);
             return;
     
-          case "2":
-            this.armor(this.cards[id - 1].armor);
+          case 2:
+            this.armor(3);
             return;
         }
       };
@@ -82,8 +83,23 @@ class BattlePage extends Component {
     }
     
     
-    handlePlayedCards = (arr)=>{
-      console.log(arr)
+    handlePlayedCards = (array)=>{
+        let tempPlayed=array
+     
+        let self = this
+        setTimeout(()=>{
+            self.cardChoice(tempPlayed[0].id)
+
+      }, 20)
+        setTimeout(function(){
+            self.cardChoice(tempPlayed[1].id)
+
+      },10)
+    //   this.cardChoice(tempPlayed[1].id)
+
+      
+      
+
     }
     
     
@@ -136,7 +152,7 @@ class BattlePage extends Component {
      
         return (
             <div className= "d-flex justify-content-center">
-            <DeckBrain/>
+            <DeckBrain readPlayed={this.handlePlayedCards}/>
             </div>
         )}
 
