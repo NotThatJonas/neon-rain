@@ -9,20 +9,20 @@ class Login extends Component {
       errors: {}
     };
   }
-onChange = e => {
+  onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
-onSubmit = e => {
+  onSubmit = e => {
     e.preventDefault();
-const userData = {
+    const userData = {
       username: this.state.username,
       password: this.state.password
     };
-console.log(userData);
+    console.log(userData);
   };
-render() {
+  render() {
     const { errors } = this.state;
-return (
+    return (
       <div className="container">
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
@@ -35,18 +35,13 @@ return (
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
-              <div className="input-field col s12">
-                <input
-                  onChange={this.onChange}
-                  value={this.state.username}
-                  error={errors.username}
-                  id="username"
-                  type="username"
-                />
+              <div className="nes-field is-inline col s12">
                 <label htmlFor="username">Username</label>
+                <input  error={errors.username} value={this.state.username} onChange={this.onChange} type="username" id="username" className="nes-input" />
               </div>
-              <div className="input-field col s12">
+              <div className="nes-field is-inline col s12">
                 <input
+                  className="nes-input is-dark"
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
@@ -56,7 +51,6 @@ return (
                 <label htmlFor="password">Password</label>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
-                
                 <button
                   style={{
                     width: "150px",
