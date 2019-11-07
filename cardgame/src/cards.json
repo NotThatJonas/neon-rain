@@ -76,7 +76,7 @@
         "name": "Spell One",
         "image": "TBD",
         "effect": null,
-        "text": "This spell increase the damage of your next 2 attacks by 3",
+        "text": "This spell increase the damage of your next attacks is multiplied by 3",
         "class": "battleMage",
         "type": "Spell" 
     },
@@ -85,9 +85,9 @@
         "name": "Spell Two",
         "image": "TBD",
         "effect": null,
-        "text": "This spell does 8 direct damage to the enemy, you take 2 damage",
-        "damage": 8,
-        "selfdamage": 2,
+        "text": "This spell does 10 direct damage to the enemy, you take 4 damage",
+        "damage": 10,
+        "selfdamage": 4,
         "class": "battleMage",
         "type": "Spell" 
     }

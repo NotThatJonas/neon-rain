@@ -1,0 +1,27 @@
+[
+    {
+        "id": 3,
+        "name": "Attack",
+        "damage": 10,
+        "image": "https://cdn1.vectorstock.com/i/1000x1000/72/45/two-crossed-light-neon-swords-laser-sabers-war-vector-19807245.jpg",
+        "text": "This Card does 10 damage to the enemy",
+        "class": "battleMage",
+        "type": "Action" 
+    },
+
+    {
+        "id": 4,
+        "name": "Defense",
+        "armor": 6,
+        "image": "TBD",
+        "text": "This card increase your armor by 6 pts until next turn",
+        "class": "battleMage",
+        "type": "Action" 
+    }
+
+
+
+
+
+
+]
