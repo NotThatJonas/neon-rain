@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import "./style.css";
 
 class Login extends Component {
   constructor() {
@@ -35,7 +36,14 @@ class Login extends Component {
   render() {
     const { errors } = this.state;
     return (
-      <div className="container">
+      
+      <div className="container inputS">
+        <div className="landing3">
+          <div className="home-wrap3">
+            <div className="home-inner3"></div>
+          </div>
+        </div>
+        <div className="nes-container is-rounded is-dark">
         <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -55,13 +63,13 @@ class Login extends Component {
                   onChange={this.onChange}
                   type="username"
                   id="username"
-                  className="nes-input"
+                  className="nes-input nes-pointer neon1"
                 />
               </div>
               <div className="nes-field is-inline col s12">
                 <label htmlFor="password">Password</label>
                 <input
-                  className="nes-input"
+                  className="nes-input neon1 nes-pointer"
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
@@ -72,13 +80,14 @@ class Login extends Component {
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   type="submit"
-                  className="btn nes-pointer neon1 mb-3 nes-btn"
+                  className="loginBtn nes-pointer neon1 mb-3 nes-btn"
                 >
                   Login
                 </button>
               </div>
             </form>
           </div>
+        </div>
         </div>
       </div>
     );
