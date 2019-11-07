@@ -7,9 +7,11 @@ class DeckBrain extends Component {
     deck: [],
     hand: [],
     discard: [],
-    playArea: []
+    playArea: [],
+    turnEnded: false
   };
-  componentWillMount = () => {
+
+  componentWillMount () {
     const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
 
@@ -20,6 +22,22 @@ class DeckBrain extends Component {
       this.drawCards
     );
   };
+
+
+  componentDidUpdate(prevprops, prevState) {
+    console.log('current state', this.state);
+    console.log('prev state', prevState);
+    console.log('prev props', prevprops);
+    console.log('current prop', this.props)
+    const turnEnded = this.state.turnEnded !== prevState.turnEnded;
+    
+    if (turnEnded) {
+      // do something
+      console.log('The turn ended')
+      this.props.readPlayed(this.state.playArea)
+      
+    }
+  }
 
   toPlay = index => {
     if (this.state.playArea.length < 2) {
@@ -72,7 +90,14 @@ class DeckBrain extends Component {
     });
   };
 
-
+  endTurn = () => {
+    console.log('ending turn')
+    this.setState({
+      turnEnded: true
+    })
+    
+    // this.discardPlayed()
+  }
 
 
   toHand = (index) => {
@@ -88,6 +113,7 @@ class DeckBrain extends Component {
   
     })
   }
+
   shuffleCards = cards => {
     let randomCardsArray = [];
     let originalCards = cards.slice(0);
@@ -100,71 +126,56 @@ class DeckBrain extends Component {
 
     return randomCardsArray;
   };
-  // console.log(this.state.deck)
+
+
   render() {
-    return (
 
-      <div>
-        <div className="row d-flex justify-content-center">
-       
-          {this.state.playArea.length > 0 ? (
-            <div>
-              {
-                <Cards
-                  name={this.state.playArea[0].name}
-                  image={this.state.playArea[0].image}
-                  text={this.state.playArea[0].text}
-                  handleClick={this.toHand}
-                  currentIndex={0}
-                />
-              }
-            </div>
-          ) : null}
-     
-    
- 
-        {this.state.playArea.length >1 ? (
-           <div>
-           {<Cards
-             name={this.state.playArea[1].name}
-             image={this.state.playArea[1].image}
-             text={this.state.playArea[1].text}
-             handleClick= {this.toHand}
-             currentIndex={1}
-             
-           />}
-           </div>
-           ):null}
-         
-        </div>
-        <div className="row">
-          {this.state.hand.length >= 3 ? (
-            <div className="d-flex justify-content-center">
-              {this.state.hand.map((card, index) => (
-                <Cards
-                  name={card.name}
-                  image={card.image}
-                  text={card.text}
-                  handleClick={this.toPlay}
-                  currentIndex={index}
-                />
-              ))}
-                 </div>
-              ):null}
-              </div>
-              {/* <button onclick= {console.log("clicked"), this.props.readPlayed}>
-  End Turn
-</button> */}
-<button onClick= {()=>this.props.readPlayed(this.state.playArea)}>
-  End Turn
-</button>
-      </div>
+    const hand = (this.state.hand.map((card, index) => {
+        return (
+            <Cards
+                name={card.name}
+                image={card.image}
+                text={card.text}
+                handleClick={this.toPlay}
+                currentIndex={index}
+          />
+        )
+      })
+      )
+
+    const playArea = (this.state.playArea.map((card, index) => {
+        return (
+            <Cards
+                name={card.name}
+                image={card.image}
+                text={card.text}
+                handleClick={this.toPlay}
+                currentIndex={index}
+            />
+        )
+
+    })
     )
-             
-            
-        
-      
-    }
-              }         
 
+    return (
+        
+        <div id="gameArea">
+            <div className="row d-flex justify-content-center">
+                <button onClick={this.endTurn}>
+                 End Turn
+                </button>
+            </div>
+            <div className="row d-flex justify-content-center">
+                {playArea.length ? playArea : null}
+            </div>
+            <div className="row d-flex justify-content-center">
+                {hand.length ? hand : null}
+            </div>
+        </div>
+
+    ) 
+  }
+  
+
+}
 export default DeckBrain;
