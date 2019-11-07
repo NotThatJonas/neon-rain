@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import "./style1.css";
+import "./style.css";
 
 class Leaderboards extends Component {
   render() {
