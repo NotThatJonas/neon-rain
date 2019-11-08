@@ -6,6 +6,7 @@
         "actions":[1,2],
         "attack": 5,
         "armor": 0,
+        "armorGain":3,
         "image": "TBD",
         "text": "This enemy is the first challenger"
     },

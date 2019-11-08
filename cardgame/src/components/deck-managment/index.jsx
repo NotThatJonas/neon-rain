@@ -162,9 +162,11 @@ class DeckBrain extends Component {
         
         <div id="gameArea">
             <div className="row d-flex justify-content-center">
-                <button onClick={this.endTurn}>
-                 End Turn
-                </button>
+
+
+<button onClick= {()=>this.props.readPlayed(this.state.playArea)}>
+  End Turn
+</button>
             </div>
             <div className="row d-flex justify-content-center">
                 {playArea.length ? playArea : null}
