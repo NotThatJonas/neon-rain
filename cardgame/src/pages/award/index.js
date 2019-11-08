@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
+
+
 class Save extends Component {
+
   constructor() {
     super();
     this.state = {
@@ -43,10 +46,12 @@ render() {
       
       <div>
         <div className="landing">
+        <DeckBrain readPlayed={this.handlePlayedCards}></DeckBrain>
           <div className="home-wrap">
             <div className="home-inner"></div>
           </div>
         </div>
+
 
         <div className="caption text-center nes-pointer">
           <Link to="/">
