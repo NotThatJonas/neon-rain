@@ -30,10 +30,6 @@ class DeckBrain extends Component {
     if (turnEnded) {
       this.props.readPlayed(this.state.playArea);
       this.discardPlayed();
-      this.drawCards();
-      this.setState({
-        turnEnded: false
-      });
     }
   }
 
@@ -62,7 +58,7 @@ class DeckBrain extends Component {
     this.setState({
       discard: tempDiscard,
       playArea: []
-    });
+    }, this.drawCards);
   };
 
   drawCards = () => {
@@ -91,15 +87,14 @@ class DeckBrain extends Component {
   };
 
   endTurn = () => {
+    let turn = !this.state.turnEnded
     console.log("ending turn");
     this.setState({
-      turnEnded: true
+      turnEnded: turn
     });
-
-    // this.discardPlayed()
   };
 
-  toHand = index => {
+  toHand = (index) => {
     let tempHand = this.state.hand;
     let card = this.state.playArea[index];
     let tempPlay = this.state.playArea;
@@ -112,7 +107,7 @@ class DeckBrain extends Component {
     });
   };
 
-  shuffleCards = cards => {
+  shuffleCards = (cards) => {
     let randomCardsArray = [];
     let originalCards = cards.slice(0);
 
@@ -126,12 +121,13 @@ class DeckBrain extends Component {
   };
 
   render() {
-    const hand = this.state.hand.map((card, index) => {
+    let hand = this.state.hand.map((card, index) => {
       return (
         <div className="handCard row d-flex justify-content-center">
           <Cards
             name={card.name}
             image={card.image}
+            style={this.state.hand.includes(card.name)?{border:" 5px dashed red"}: null}
             text={card.text}
             handleClick={this.toPlay}
             currentIndex={index}
@@ -140,7 +136,7 @@ class DeckBrain extends Component {
       );
     });
 
-    const playArea = this.state.playArea.map((card, index) => {
+    let playArea = this.state.playArea.map((card, index) => {
       return (
         <div className="playCard row d-flex justify-content-center">
           <Cards

@@ -12,39 +12,16 @@ class Leaderboards extends Component {
         </div>
           <div className="container">
             <div>
-              <h1 className="neon3 head">Leaderboard</h1>
+              <h1 className="neon3 head">Rules</h1>
             </div>
-            <div className=" neon2 nes-table-responsive">
-              <table className="nes-table is-bordered is-dark">
-                <thead>
-                  <tr>
-                    <th>Table.is-dark</th>
-                    <th>Table.is-bordered</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td>Thou hast had a good morning</td>
-                    <td>Thou hast had a good afternon</td>
-                  </tr>
-                  <tr>
-                    <td>Thou hast had a good morning</td>
-                    <td>Thou hast had a good afternoon</td>
-                  </tr>
-                  <tr>
-                    <td>Thou hast had a good morning</td>
-                    <td>Thou hast had a good afternoon</td>
-                  </tr>
-                  <tr>
-                    <td>Thou hast had a good morning</td>
-                    <td>Thou hast had a good afternoon</td>
-                  </tr>
-                  <tr>
-                    <td>Thou hast had a good morning</td>
-                    <td>Thou hast had a good afternoon</td>
-                  </tr>
-                </tbody>
-              </table>
+            <br></br>
+            <div className=" neon2 nes">
+              
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, maiores. Velit reprehenderit odit ullam consequuntur impedit itaque quos enim nihil commodi tempore harum ipsam sequi ex unde, dolor corporis beatae?</p>
+              <br></br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, maiores. Velit reprehenderit odit ullam consequuntur impedit itaque quos enim nihil commodi tempore harum ipsam sequi ex unde, dolor corporis beatae?</p>
+              <br></br>
+              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Explicabo, maiores. Velit reprehenderit odit ullam consequuntur impedit itaque quos enim nihil commodi tempore harum ipsam sequi ex unde, dolor corporis beatae?</p>
             </div>
           </div>
       </div>

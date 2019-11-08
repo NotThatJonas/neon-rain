@@ -16,212 +16,187 @@ class BattlePage extends Component {
     enemies,
     currentEnemyHealth: 0,
     currentEnemyArmor: 0,
+    currentEnemyAbilities: [],
     currentEnemyAttack: 0,
-    playedCards: []
+    currentEnemyArmorGain: 0,
+    playedCards: [],
+    userTurnOver: false
   };
 
-  // cardChoice = (id) => {
-
-  //   switch (id) {
-  //     case 1:
-  //       this.userAttack(5);
-  //       return;
-
-  // case 3:
-  //   this.multiply(3)
-
-  //     case 2:
-  //       this.armor(3);
-  //       return;
-  //   }
-  // };
-
   componentDidMount() {
-    let currentEnemy = enemies[this.state.winCount];
-    let currentEnemyHealth = currentEnemy.health;
-    let currentEnemyArmor = currentEnemy.armor;
-    let currentEnemyAttack = currentEnemy.attack;
+    let currentEnemy = enemies[this.state.winCount]
+    let currentEnemyHealth = currentEnemy.health
+    let currentEnemyArmor = currentEnemy.armor
+    let newEnemyAbilities = currentEnemy.actions
+    let newEnemyAttack = currentEnemy.attack
+    let newEnemyArmorGain = currentEnemy.armorGain
     this.setState({
       currentEnemyHealth: currentEnemyHealth,
       currentEnemyArmor: currentEnemyArmor,
-      currentEnemyAttack: currentEnemyAttack
-    });
+      currentEnemyAbilities: newEnemyAbilities,
+      currentEnemyAttack: newEnemyAttack,
+      currentEnemyArmorGain: newEnemyArmorGain
+
+    })
   }
 
-  // multiply
-
-  //       userAttack = damage => {
-  //         let tempArmor=this.state.currentEnemyArmor
-  //         let tempHealth=this.state.currentEnemyHealth
-  //         if (this.state.tempArmor >= damage) {
-  //         tempArmor=tempArmor-damage
-  //           // newArmor = tempArmor - damage;
-  //           this.setState({
-  //             currentEnemyArmor: tempArmor
-  //           });
-  //         }
-  //         else {
-  //           let newDamage = damage - tempArmor;
-  //           // let tempHealth = tempEnemy.health;
-  //           tempHealth = tempHealth- newDamage;
-  //           // tempHealth=newHealth
-  //           tempArmor=0
-  //           this.setState({
-  //             currentEnemyHealth: tempHealth,
-  //             currentEnemyArmor:tempArmor
-  //           });
-  //         if(this.state.currentEnemyHealth<=0){
-  //           newWinCounts=this.state.winCount+1
-  //           this.setState({
-  //             winCount:newWinCounts
-  //           })
-  //           // let newEnemy={...this.state.enemies[newWinCounts]}
-  //           let currentEnemy=enemies[this.state.winCount]
-  //           let currentEnemyHealth=currentEnemy.health
-  //           let currentEnemyArmor=currentEnemy.armor
-  //           let currentEnemyAttack=currentEnemy.attack
-  //           this.setState({
-  //             currentEnemyHealth:currentEnemyHealth,
-  //             currentEnemyArmor:currentEnemyArmor,
-  //             currentEnemyAttack:currentEnemyAttack
-  //           })
-  //         }
-  //         }
-  //       }
-  //       armor = armor => {
-  //         let newArmor = this.state.userArmor + armor;
-  //         this.setState({
-  //           userArmor: newArmor
-  //         });
-  //       };
-  //     handlePlayedCards = (array)=>{
-  //         let tempPlayed=array
-  //         let self = this
-  //         setTimeout(()=>{
-  //             self.cardChoice(tempPlayed[0].id)
-  //       }, 2)
-  //         setTimeout(function(){
-  //             self.cardChoice(tempPlayed[1].id)
-  //       },1)
-
-  userAttack = damage => {
-    let newArmor = 0;
-    let gameWon = false;
-
-    if (this.state.enemyArmor >= damage) {
-      let tempArmor = this.state.enemyArmor;
-      newArmor = tempArmor - damage;
-      return {
-        newArmor,
-        gameWon
-      };
-    } else {
-      let newDamage = damage - this.state.enemyArmor;
-      let tempHealth = this.state.enemyHealth;
-      let newHealth = tempHealth - newDamage;
-      if (newHealth <= 0) {
-        gameWon = true;
-      }
-      return {
-        newArmor,
-        newHealth,
-        gameWon
-      };
-    }
-  };
-
-  setEnemyValues = enemies => {
-    this.setState({
-      enemyHealth: enemies[this.state.winCount].health,
-      enemyArmor: enemies[this.state.winCount].armor
-    });
-  };
+  componentDidUpdate(prevprops, prevState) {
+    const turnEnded = this.state.userTurnOver !== prevState.userTurnOver;
+    if (turnEnded) {
+     this.firstEnemyAction()
+   }
+  }
 
   handlePlayedCards = playedCards => {
     let tempPlayed = playedCards;
 
-    let damage = 0;
-    let armor = this.state.userArmor;
+  }
 
-    playedCards.forEach(card => {
-      switch (card.id) {
-        case 1:
-          damage += card.damage;
 
-          break;
 
-        case 2:
-          armor += card.armor;
-          return;
-      }
-    });
-    let { newArmor, newHealth, gameWon } = this.userAttack(damage);
 
-    this.setState({
-      enemyArmor: newArmor,
-      enemyHealth: newHealth,
-      userArmor: armor
-    });
-  };
-  firstEnemyAction = id => {
-    let possibleEnemyActions = [];
-    let newEnemyAttack;
-    let newEnemyArmor;
-    for (let k = 0; k < enemies.length; k++) {
-      if (id === this.state.winCount) {
-        newEnemyAttack = enemies[k].attack;
-        newEnemyArmor = enemies[k].armor;
-        possibleEnemyActions = enemies[k].actions;
-      }
-    }
-    let randomAction;
-    randomAction = Math.floor(Math.random() * possibleEnemyActions.length);
+
+  firstEnemyAction = () => {
+
+    let possibleEnemyActions = this.state.currentEnemyAbilities
+    let newEnemyAttack = this.state.currentEnemyAttack
+    let newEnemyArmor = this.state.currentEnemyArmor
+    let newEnemyArmorGain = this.state.currentEnemyArmorGain
+    let newUserHealth = this.state.userHealth
+    let newUserArmor = this.state.userArmor
+    
+
+    let randomAction = Math.floor(Math.random() * possibleEnemyActions.length + 1);
+    console.log(randomAction);
+
     switch (randomAction) {
       case 1:
         //enemy attacks!!
-        if (this.state.userArmor >= newEnemyAttack) {
-          let newArmor = this.state.userArmor - newEnemyAttack;
+        if (newUserArmor >= newEnemyAttack) {
+          let newArmor = newUserArmor - newEnemyAttack;
           this.setState({
             userArmor: newArmor
           });
         } else {
-          let newAttack = newEnemyAttack - this.state.userAttack;
-          let newHealth = this.state.userHealth - newAttack;
+          let newAttack = newEnemyAttack - newUserArmor;
+          let newHealth = newUserHealth - newAttack;
           this.setState({
             userHealth: newHealth,
             userArmor: 0
-          });
+          })
         }
+      break
       case 2:
-        //enemy gains armor
-        let newArmor = this.state.enemyArmor + newEnemyArmor;
-        this.setState({
-          enemyArmor: newArmor
-        });
-    }
-  };
+            //enemy gains armor
+            let newArmor = newEnemyArmor + newEnemyArmorGain;
+            this.setState({
+              currentEnemyArmor: newArmor
+            });
+      return
+          }}
+      
+    
 
-  render() {
-    return (
-      <div>
-        <div className="landing2">
-          </div>
-        <div className="row bars">
-          <div className="health col-md-6">
-            <HealthBar />
-            <p className="hb">Player</p>
-          </div>
-            <div className="emhealth col-md-6">
-              <EHBar />
-              <p className="em">Enemy</p>
+      userAttack = (damage) => {
+        let newArmor = 0;
+        let gameWon = false;
+        let newHealth
+        if (this.state.currentEnemyArmor >= damage) {
+          let tempArmor = this.state.currentEnemyArmor;
+          newArmor = tempArmor - damage;
+        } else {
+          let newDamage = damage - this.state.currentEnemyArmor;
+          let tempHealth = this.state.currentEnemyHealth;
+          newHealth = tempHealth - newDamage;
+          if(newHealth<=0) {
+            gameWon = true;
+          }
+        }
+
+        return {
+          newArmor,
+          newHealth,
+          gameWon
+        }
+
+      };
+    
+       
+    
+    
+    handlePlayedCards = (playedCards) => {
+
+      let damage = 0;
+      let armor = this.state.userArmor;
+
+      playedCards.forEach((card) => {
+          switch (card.id) {
+            case 1:
+            damage += card.damage;
+           
+            break
+      
+            case 2:
+              armor += card.armor
+            return;
+          }
+      });
+      if(damage){
+      let {newArmor, newHealth, gameWon} = this.userAttack(damage)
+      let turnOver = !this.state.userTurnOver
+
+      if(gameWon){
+        let tempWin = this.state.winCount + 1
+        this.setState({
+          winCount: tempWin
+        })
+      }
+      this.setState({
+        currentEnemyArmor: newArmor,
+        currentEnemyHealth: newHealth,
+        userTurnOver: turnOver,
+        userArmor: armor
+      })}
+      else {
+      let turnOver = !this.state.userTurnOver
+      this.setState({
+        userTurnOver: turnOver,
+        userArmor: armor
+      })}
+
+
+    }
+
+
+
+
+    render() {
+      return (
+        <div>
+          <div className="landing2">
             </div>
+          <div className="row bars">
+            <div className="health col-md-6">
+              <HealthBar />
+              <p className="hb">Player</p>
+            </div>
+              <div className="emhealth col-md-6">
+                <EHBar />
+                <p className="em">Enemy</p>
+              </div>
+          </div>
+          <div className="d-flex carddeck justify-content-center">
+          {this.state.userTurnOver ? "true" : "false"}
+          <br></br>
+          {this.state.currentEnemyHealth}
+          <br></br>
+          {this.state.userHealth}
+            <DeckBrain readPlayed={this.handlePlayedCards} />
+          </div>
         </div>
-        <div className="d-flex carddeck justify-content-center">
-          <DeckBrain readPlayed={this.handlePlayedCards} />
-        </div>
-      </div>
-    );
-  }
+      );
+    }
+
 }
 
 export default BattlePage;
