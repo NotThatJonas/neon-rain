@@ -1,14 +1,14 @@
 import React, { Component } from "react";
 import "./style.css";
-import enemies from "../../enemy.json"
-import DeckBrain from "../../components/deck-managment"
-
+import enemies from "../../enemy.json";
+import DeckBrain from "../../components/deck-managment";
+import HealthBar from "../../components/plyr-healthbar";
+import EHBar from "../../components/ehealthbar";
 
 var newWinCounts;
-var newEnemyObject
+var newEnemyObject;
 
 class BattlePage extends Component {
-
   state = {
     winCount: 0,
     userHealth: 100,
@@ -25,20 +25,19 @@ class BattlePage extends Component {
   };
 
   componentDidMount() {
-    let currentEnemy = enemies[this.state.winCount]
-    let currentEnemyHealth = currentEnemy.health
-    let currentEnemyArmor = currentEnemy.armor
-    let newEnemyAbilities = currentEnemy.actions
-    let newEnemyAttack = currentEnemy.attack
-    let newEnemyArmorGain = currentEnemy.armorGain
+    let currentEnemy = enemies[this.state.winCount];
+    let currentEnemyHealth = currentEnemy.health;
+    let currentEnemyArmor = currentEnemy.armor;
+    let newEnemyAbilities = currentEnemy.actions;
+    let newEnemyAttack = currentEnemy.attack;
+    let newEnemyArmorGain = currentEnemy.armorGain;
     this.setState({
       currentEnemyHealth: currentEnemyHealth,
       currentEnemyArmor: currentEnemyArmor,
       currentEnemyAbilities: newEnemyAbilities,
       currentEnemyAttack: newEnemyAttack,
       currentEnemyArmorGain: newEnemyArmorGain
-
-    })
+    });
   }
 
   componentDidUpdate(prevprops, prevState) {
@@ -64,16 +63,16 @@ class BattlePage extends Component {
 
 
   firstEnemyAction = () => {
+    let possibleEnemyActions = this.state.currentEnemyAbilities;
+    let newEnemyAttack = this.state.currentEnemyAttack;
+    let newEnemyArmor = this.state.currentEnemyArmor;
+    let newEnemyArmorGain = this.state.currentEnemyArmorGain;
+    let newUserHealth = this.state.userHealth;
+    let newUserArmor = this.state.userArmor;
 
-    let possibleEnemyActions = this.state.currentEnemyAbilities
-    let newEnemyAttack = this.state.currentEnemyAttack
-    let newEnemyArmor = this.state.currentEnemyArmor
-    let newEnemyArmorGain = this.state.currentEnemyArmorGain
-    let newUserHealth = this.state.userHealth
-    let newUserArmor = this.state.userArmor
-    
-
-    let randomAction = Math.floor(Math.random() * possibleEnemyActions.length + 1);
+    let randomAction = Math.floor(
+      Math.random() * possibleEnemyActions.length + 1
+    );
     console.log(randomAction);
 
     switch (randomAction) {
@@ -90,35 +89,18 @@ class BattlePage extends Component {
           this.setState({
             userHealth: newHealth,
             userArmor: 0
-          })
+          });
         }
-      break
+        break;
       case 2:
-            //enemy gains armor
-            let newArmor = newEnemyArmor + newEnemyArmorGain;
-            this.setState({
-              currentEnemyArmor: newArmor
-            });
-      return
-          }}
-      
-    
-
-      userAttack = (damage) => {
-        let newArmor = 0;
-        let gameWon = false;
-        let newHealth
-        if (this.state.currentEnemyArmor >= damage) {
-          let tempArmor = this.state.currentEnemyArmor;
-          newArmor = tempArmor - damage;
-        } else {
-          let newDamage = damage - this.state.currentEnemyArmor;
-          let tempHealth = this.state.currentEnemyHealth;
-          newHealth = tempHealth - newDamage;
-          if(newHealth<=0) {
-            gameWon = true;
-          }
-        }
+        //enemy gains armor
+        let newArmor = newEnemyArmor + newEnemyArmorGain;
+        this.setState({
+          currentEnemyArmor: newArmor
+        });
+        return;
+    }
+  };
 
         return {
           newArmor,
@@ -192,7 +174,7 @@ newEnemyArmor=0
         let tempWin = this.state.winCount + 1
         this.setState({
           winCount: tempWin
-        })
+        });
       }
       this.setState({
         currentEnemyArmor: newArmor,
@@ -207,28 +189,47 @@ newEnemyArmor=0
       this.setState({
         userTurnOver: turnOver,
         userArmor: armor
-      })}
-
-
+      });
     }
-
-
-
+  };
 
   render() {
-
     return (
-      <div className="d-flex justify-content-center">
-        {this.state.userTurnOver ? "true" : "false"}
-        <br></br>
-        {this.state.currentEnemyHealth}
-        <br></br>
-        {this.state.userHealth}
-        <DeckBrain readPlayed={this.handlePlayedCards} />
-      </div>
-    )
-  }
+      <div>
+        <div className="landing2"></div>
+        <div className="row bars">
+          <div className="health col-md-6">
+            <div>
+              <progress
+                class="nes-progress health is-error"
+                value={this.state.userHealth}
+                max="100"
+              ></progress>
+            </div>
+            <p className="hb">Player:{this.state.userHealth}</p>
+              
+          </div>
+          <div className="emhealth col-md-6">
+            <div>
+              <progress
+                class="nes-progress emhealth is-error"
+                value={this.state.currentEnemyHealth}
+                max="100"
+              ></progress>
+            </div>
+            <p className="em">Enemy:{this.state.currentEnemyHealth}</p>
+          </div>
+        </div>
+        <div className="d-flex carddeck justify-content-center">
+          {this.state.userTurnOver ? "true" : "false"}
+          <br></br>
 
+          <br></br>
+          <DeckBrain readPlayed={this.handlePlayedCards} />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default BattlePage;

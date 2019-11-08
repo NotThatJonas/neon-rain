@@ -1,3 +1,6 @@
+*{
+  overflow: hidden;
+}
 .container {
   display: flex;
   flex-direction: column;
@@ -29,35 +32,53 @@
   padding: 1%;
   font-size: 2em;
 }
-
-.landing2 {
-  position: relative;
-  width: 100%;
-  height: 100vh;
-  display: table;
-  z-index: -1;
+.neon4 {
+  font-size: 1em;
+  color: black !important ;
+  background-color: #fff;
+  text-shadow: 2px 2px #52c0da;
 }
-.home-inner2 {
-  position: fixed;
-  display: table;
+.landing2 {
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background-size:100% 100%;
+  /* height: 68vh; */
+  background-size: 100% 100%;
   background-position: center center;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  will-change: transform;
   background-image: url(./raina.gif);
 }
+.decks {
+  margin: 0px !important;
+  /* background-color: black !important; */
+}
 .carddeck {
- 
   position: absolute;
-  top: 60%;
-  z-index: 1;
- 
+  bottom: -5% !important;
+
 }
-.playArea{
-  /* display:inline-block; */
+.bars {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  color: white !important;
 }
+.nes-progress {
+  background-color: transparent;
+}
+.em {
+  float: right !important;
+  color: #ffffff;
+}
+.neon4:hover {
+  background-color: #9c9c9c !important;
+}
+.hb {
+  color: #ffffff;
+}
+.raise:hover{
+  transform: translate(0px, -100px);
+}
+.grow { transition: all .2s ease-in-out; }
+/* .grow:hover { transform: scale(2.1); } */

@@ -160,15 +160,20 @@ console.log(newCardsShuffled);
     });
 
     return (
-
-      <div id="gameArea">
-        <div className="row d-flex justify-content-center">
-          <button onClick={this.endTurn}>End Turn</button>
-
+      // <div className="nes-container decks is-rounded">
+        <div id="gameArea">
+          <div className="row d-flex justify-content-center">
+            <button
+              className="nes-pointer endTurn neon4 mb-3 nes-btn"
+              onClick={this.endTurn}
+            >
+              End Turn
+            </button>
+          </div>
+          <div className="playArea">{playArea.length ? playArea : null}</div>
+          <div className="handArea">{hand.length ? hand : null}</div>
         </div>
-        <div className="playArea">{playArea.length ? playArea : null}</div>
-        <div className="handArea">{hand.length ? hand : null}</div>
-      </div>
+      // </div>
     );
   }
 }
