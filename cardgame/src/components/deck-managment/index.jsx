@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards";
+import newCards from "../../newCards.json"
 import PlayArea from "../../components/playArea";
 import style from "./style.css";
 class DeckBrain extends Component {
@@ -9,20 +10,29 @@ class DeckBrain extends Component {
     hand: [],
     discard: [],
     playArea: [],
+    newCards:[],
     turnEnded: false
   };
 
   componentWillMount() {
     const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
+const newCardsShuffled=this.shuffleCards(newCards);
+console.log(newCardsShuffled);
 
     this.setState(
       {
-        deck: shuffledDeck
+        deck: shuffledDeck,
+        newCards: newCardsShuffled
       },
       this.drawCards
     );
   }
+
+
+
+
+  
 
   componentDidUpdate(prevprops, prevState) {
     const turnEnded = this.state.turnEnded !== prevState.turnEnded;
@@ -30,11 +40,6 @@ class DeckBrain extends Component {
     if (turnEnded) {
       this.props.readPlayed(this.state.playArea);
       this.discardPlayed();
-<<<<<<< HEAD
-      
-      console.log(this.state.turnEnded)
-=======
->>>>>>> 4a7ee9237fa806c8876979e71a5bb2d5731e06aa
     }
   }
 
@@ -63,11 +68,7 @@ class DeckBrain extends Component {
     this.setState({
       discard: tempDiscard,
       playArea: []
-<<<<<<< HEAD
-    }, this.drawCards());
-=======
     }, this.drawCards);
->>>>>>> 4a7ee9237fa806c8876979e71a5bb2d5731e06aa
   };
 
   drawCards = () => {

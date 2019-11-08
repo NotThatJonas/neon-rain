@@ -17,6 +17,55 @@
         "text": "This card increase your armor by 6 pts until next turn",
         "class": "battleMage",
         "type": "Action" 
+    },
+    {
+        "id": 3,
+        "name": "Spell Three",
+        "image": "TBD",
+        "effect": null,
+        "text": "This spell does 15 direct damage to the enemy, you take 8 damage",
+        "damage": 15,
+        "selfDamage": 8,
+        "class": "battleMage",
+        "type": "Spell" 
+    },
+    {
+        "id": 4,
+        "name": "Spell Four",
+        "image": "TBD",
+        "effect": null,
+        "text": "This spell increase the damage of your previous attacks by 4",
+        "multiplier":4,
+        "class": "battleMage",
+        "type": "Spell" 
+    },
+    {
+        "id": 5,
+        "name": "Spell five",
+        "image": "TBD",
+        "effect": null,
+        "text": "This spell removes all enemy armor",
+        "class": "battleMage",
+        "type": "Spell" 
+    },
+    {
+        "id": 6,
+        "name": "Spell six",
+        "image": "TBD",
+        "effect": null,
+        "text": "This spell heals you for 10",
+        "healValue": 10,
+        "class": "battleMage",
+        "type": "Spell" 
+    },
+    {
+        "id": 7,
+        "name": "Spell seven",
+        "image": "TBD",
+        "effect": null,
+        "text": "This spell makes the enemy skip their next turn",
+        "class": "battleMage",
+        "type": "Spell" 
     }
 
 
