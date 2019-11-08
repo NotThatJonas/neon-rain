@@ -152,9 +152,11 @@ class DeckBrain extends Component {
     });
 
     return (
+
       <div id="gameArea">
         <div className="row d-flex justify-content-center">
           <button onClick={this.endTurn}>End Turn</button>
+
         </div>
         <div className="playArea">{playArea.length ? playArea : null}</div>
         <div className="handArea">{hand.length ? hand : null}</div>
