@@ -171,7 +171,7 @@ console.log(newCardsShuffled);
             </button>
           </div>
           <div className="playArea">{playArea.length ? playArea : null}</div>
-          <div className="handArea">{hand.length ? hand : null}</div>
+          <div className="handArea no-gutters">{hand.length ? hand : null}</div>
         </div>
       // </div>
     );

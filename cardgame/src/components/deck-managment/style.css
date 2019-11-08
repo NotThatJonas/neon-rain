@@ -4,10 +4,15 @@
 .playArea {
   display: flex;
   justify-content: center;
+  margin:0;
+  bottom: 0% !important;
 }
 .playCard {
   width: 20%;
   padding: 10px;
+  padding-top: 100px !important;
+  transform: scale(0.7);
+  
 }
 .handArea {
   display: flex;
@@ -15,6 +20,9 @@
 }
 
 .handCard {
+    padding-top: 100px !important;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
   width: 20%;
   padding: 10px;
   transform: scale(0.7);

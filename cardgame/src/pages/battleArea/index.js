@@ -234,10 +234,6 @@ newEnemyArmor=0
           </div>
         </div>
         <div className="d-flex carddeck justify-content-center">
-          {this.state.userTurnOver ? "true" : "false"}
-          <br></br>
-
-          <br></br>
           <DeckBrain readPlayed={this.handlePlayedCards} />
         </div>
       </div>
