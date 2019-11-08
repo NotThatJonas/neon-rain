@@ -38,19 +38,14 @@ class BattlePage extends Component {
       currentEnemyArmorGain: newEnemyArmorGain
 
     })
+  }
 
-
-  // componentDidUpdate(prevprops, prevState) {
-  //   const turnEnded = this.state.userTurnOver !== prevState.userTurnOver;
-  //   let turn=!this.state.userTurnOver
-  //   if (turnEnded) {
-  //    this.firstEnemyAction()
-  
-  //     this.setState({
-  //       userTurnOver: turn
-  //     })
-  //   }
-  // }
+  componentDidUpdate(prevprops, prevState) {
+    const turnEnded = this.state.userTurnOver !== prevState.userTurnOver;
+    if (turnEnded) {
+     this.firstEnemyAction()
+   }
+  }
 
 
 
@@ -60,15 +55,14 @@ class BattlePage extends Component {
 
 
   firstEnemyAction = () => {
-    console.log(this.state.currentEnemyAbilities);
+
     let possibleEnemyActions = this.state.currentEnemyAbilities
     let newEnemyAttack = this.state.currentEnemyAttack
     let newEnemyArmor = this.state.currentEnemyArmor
     let newEnemyArmorGain = this.state.currentEnemyArmorGain
     let newUserHealth = this.state.userHealth
     let newUserArmor = this.state.userArmor
-    console.log(possibleEnemyActions);
-
+    
 
     let randomAction = Math.floor(Math.random() * possibleEnemyActions.length + 1);
     console.log(randomAction);
@@ -87,20 +81,18 @@ class BattlePage extends Component {
           this.setState({
             userHealth: newHealth,
             userArmor: 0
-          });
-
-    
-//     componentWillMount(){
-// let currentEnemy=enemies[this.state.winCount]
-// let currentEnemyHealth=currentEnemy.health
-// let currentEnemyArmor=currentEnemy.armor
-// let currentEnemyAttack=currentEnemy.attack
-//       this.setState({
-//         currentEnemyHealth:currentEnemyHealth,
-//         currentEnemyArmor:currentEnemyArmor,
-//         currentEnemyAttack:currentEnemyAttack
-//       })
-//     }
+          })
+        }
+      break
+      case 2:
+            //enemy gains armor
+            let newArmor = newEnemyArmor + newEnemyArmorGain;
+            this.setState({
+              currentEnemyArmor: newArmor
+            });
+      return
+          }}
+      
     
 
       userAttack = (damage) => {
@@ -147,67 +139,31 @@ class BattlePage extends Component {
             return;
           }
       });
-
+      if(damage){
       let {newArmor, newHealth, gameWon} = this.userAttack(damage)
+      let turnOver = !this.state.userTurnOver
+
+      if(gameWon){
+        let tempWin = this.state.winCount + 1
+        this.setState({
+          winCount: tempWin
+        })
+      }
       this.setState({
         currentEnemyArmor: newArmor,
         currentEnemyHealth: newHealth,
+        userTurnOver: turnOver,
         userArmor: armor
+      })}
+      else {
+      let turnOver = !this.state.userTurnOver
+      this.setState({
+        userTurnOver: turnOver,
+        userArmor: armor
+      })}
 
-      })
-      this.firstEnemyAction()
 
     }
-
-      firstEnemyAction = id => {
-        let possibleEnemyActions=[]
-        let newEnemyAttack;
-        let newEnemyArmor;
-        for (let k = 0; k < enemies.length; k++) {
-           if(id===this.state.winCount){
-             newEnemyAttack=enemies[k].attack 
-             newEnemyArmor=enemies[k].armor 
-            possibleEnemyActions=enemies[k].actions
-           }
-        }
-        let randomAction;
-        randomAction = Math.floor(Math.random() * possibleEnemyActions.length);
-        switch (randomAction) {
-          case 1:
-          //enemy attacks!!
-            if (this.state.userArmor >= newEnemyAttack) {
-              let newArmor = this.state.userArmor - newEnemyAttack;
-              this.setState({
-                userArmor: newArmor
-              });
-            } else {
-              let newAttack = newEnemyAttack - this.state.userAttack;
-              let newHealth = this.state.userHealth - newAttack;
-              this.setState({
-                userHealth: newHealth,
-                userArmor: 0
-              });
-            }
-          case 2:
-
-          //enemy gains armor
-            let newArmor = this.state.enemyArmor + newEnemyArmor;
-            this.setState({
-              enemyArmor: newArmor
-            });
-        }
-      case 2:
-
-        //enemy gains armor
-        let newArmor = newEnemyArmor + newEnemyArmorGain;
-        this.setState({
-          currentEnemyArmor: newArmor
-        });
-    }
-  };
-
-
-
 
 
 
