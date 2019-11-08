@@ -102,15 +102,8 @@ class BattlePage extends Component {
     }
   };
 
-        return {
-          newArmor,
-          newHealth,
-          gameWon
-        }
-      
       
 
-      }
     
     
      
