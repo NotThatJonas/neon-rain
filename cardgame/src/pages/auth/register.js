@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
+import "./style.css";
 
 class Register extends Component {
   constructor() {
@@ -26,6 +27,7 @@ Axios.post("/api/users/register", newUser).then(data => {
   this.props.history.push("/battlepage")
 }).catch (err=> {
   console.log(err);
+  alert("Username already exists or password could not be validated")
   
 })
 
@@ -33,42 +35,50 @@ Axios.post("/api/users/register", newUser).then(data => {
 render() {
     const { errors } = this.state;
 return (
-      <div className="container">
-        <div className="row">
+      <div className="container inputS">
+        <div className="landing3">
+          <div className="home-wrap3">
+            <div className="home-inner3"></div>
+          </div>
+        </div>
+        <div className="nes-container is-rounded is-dark">
+        <div style={{ marginTop: "4rem" }} className="row">
           <div className="col s8 offset-s2">
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <h4>
                 <b>Register</b> below
               </h4>
               <p className="grey-text text-darken-1">
-                Already have an account? <Link to="/login">Log in</Link>
+                Already have an account? <Link className="register" to="/login">Log in</Link>
               </p>
             </div>
             <form noValidate onSubmit={this.onSubmit}>
-              <div className="input-field col s12">
+              <div className="nes-field is-inline col s12">
+                <label htmlFor="username">Username</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.username}
                   error={errors.username}
                   id="username"
                   type="text"
+                  className="nes-input nes-pointer neon1"
                 />
-                <label htmlFor="uesrname">Username</label>
               </div>
-              <div className="input-field col s12">
+              <div className="nes-field is-inline col s12">
+                <label htmlFor="password">Password</label>
                 <input
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
                   id="password"
                   type="password"
+                  className="nes-input nes-pointer neon1"
                 />
-                <label htmlFor="password">Password</label>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
                   type="submit"
-                  className="btn nes-pointer neon1 mb-3 nes-btn"
+                  className="loginBtn nes-pointer neon1 mb-3 nes-btn"
                 >
                   Sign up
                 </button>
@@ -76,8 +86,11 @@ return (
             </form>
           </div>
         </div>
+        </div>
       </div>
     );
   }
 }
 export default Register;
+
+
