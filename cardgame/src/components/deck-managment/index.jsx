@@ -31,9 +31,7 @@ class DeckBrain extends Component {
       this.props.readPlayed(this.state.playArea);
       this.discardPlayed();
       this.drawCards();
-      this.setState({
-        turnEnded: false
-      });
+      console.log(this.state.turnEnded)
     }
   }
 
@@ -91,15 +89,14 @@ class DeckBrain extends Component {
   };
 
   endTurn = () => {
+    let turn = !this.state.turnEnded
     console.log("ending turn");
     this.setState({
-      turnEnded: true
+      turnEnded: turn
     });
-
-    // this.discardPlayed()
   };
 
-  toHand = index => {
+  toHand = (index) => {
     let tempHand = this.state.hand;
     let card = this.state.playArea[index];
     let tempPlay = this.state.playArea;
@@ -112,7 +109,7 @@ class DeckBrain extends Component {
     });
   };
 
-  shuffleCards = cards => {
+  shuffleCards = (cards) => {
     let randomCardsArray = [];
     let originalCards = cards.slice(0);
 
