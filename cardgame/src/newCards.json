@@ -1,6 +1,6 @@
 [
     {
-        "id": 3,
+        "id": 1,
         "name": "Attack",
         "damage": 10,
         "image": "https://cdn1.vectorstock.com/i/1000x1000/72/45/two-crossed-light-neon-swords-laser-sabers-war-vector-19807245.jpg",
@@ -10,7 +10,7 @@
     },
 
     {
-        "id": 4,
+        "id": 2,
         "name": "Defense",
         "armor": 6,
         "image": "TBD",

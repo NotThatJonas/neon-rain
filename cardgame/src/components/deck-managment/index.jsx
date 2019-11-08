@@ -30,7 +30,7 @@ class DeckBrain extends Component {
     if (turnEnded) {
       this.props.readPlayed(this.state.playArea);
       this.discardPlayed();
-      this.drawCards();
+      
       console.log(this.state.turnEnded)
     }
   }
@@ -60,7 +60,7 @@ class DeckBrain extends Component {
     this.setState({
       discard: tempDiscard,
       playArea: []
-    });
+    }, this.drawCards());
   };
 
   drawCards = () => {
