@@ -127,7 +127,6 @@ class DeckBrain extends Component {
           <Cards
             name={card.name}
             image={card.image}
-            style={this.state.hand.includes(card.name)?{border:" 5px dashed red"}: null}
             text={card.text}
             handleClick={this.toPlay}
             currentIndex={index}
