@@ -46,7 +46,7 @@ render() {
       
       <div>
         <div className="landing">
-        <DeckBrain readPlayed={this.handlePlayedCards}></DeckBrain>
+        {/* <DeckBrain readPlayed={this.handlePlayedCards}></DeckBrain> */}
           <div className="home-wrap">
             <div className="home-inner"></div>
           </div>
