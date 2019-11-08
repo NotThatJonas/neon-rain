@@ -72,23 +72,34 @@
         "type": "Action" 
     },
     {
-        "id": 9,
-        "name": "Spell One",
-        "image": "TBD",
-        "effect": null,
-        "text": "This spell increase the damage of your next attacks is multiplied by 3",
-        "class": "battleMage",
-        "type": "Spell" 
-    },
-    {
-        "id": 10,
+        "id": 3,
         "name": "Spell Two",
         "image": "TBD",
         "effect": null,
         "text": "This spell does 10 direct damage to the enemy, you take 4 damage",
         "damage": 10,
-        "selfdamage": 4,
+        "selfDamage": 4,
+        "class": "battleMage",
+        "type": "Spell" 
+    },
+    {
+        "id": 4,
+        "name": "Spell One",
+        "image": "TBD",
+        "effect": null,
+        "text": "This spell increase the damage of your next attacks is multiplied by 3",
+        "multiplier":3,
+        "class": "battleMage",
+        "type": "Spell" 
+    },
+    {
+        "id": 7,
+        "name": "Spell seven",
+        "image": "TBD",
+        "effect": null,
+        "text": "This spell makes the enemy skip their next turn",
         "class": "battleMage",
         "type": "Spell" 
     }
+  
 ]
