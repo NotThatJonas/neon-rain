@@ -122,10 +122,9 @@ class BattlePage extends Component {
         return;
     }
   };
-      
-      
 
       
+
     
     
      

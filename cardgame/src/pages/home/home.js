@@ -40,7 +40,7 @@ class Home extends Component {
           </Link>
           <Link to="/leaderboards">
           <button type="button" className="btn mb-3 neon1 nes-pointer nes-btn">
-            Highscore
+            Rules
           </button>
           </Link>
         </div>
