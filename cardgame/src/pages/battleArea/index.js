@@ -57,8 +57,29 @@ class BattlePage extends Component {
 
 
 
+  userAttack = (damage) => {
+    let newArmor = 0;
+    let gameWon = false;
+    let newHealth
+    if (this.state.currentEnemyArmor >= damage) {
+      let tempArmor = this.state.currentEnemyArmor;
+      newArmor = tempArmor - damage;
+    } else {
+      let newDamage = damage - this.state.currentEnemyArmor;
+      let tempHealth = this.state.currentEnemyHealth;
+      newHealth = tempHealth - newDamage;
+      if(newHealth<=0) {
+        gameWon = true;
+      }
+    }
 
-       
+    return {
+      newArmor,
+      newHealth,
+      gameWon
+    }
+  }
+        
 
 
 
@@ -101,16 +122,10 @@ class BattlePage extends Component {
         return;
     }
   };
-
-        return {
-          newArmor,
-          newHealth,
-          gameWon
-        }
       
       
 
-      }
+      
     
     
      
@@ -123,7 +138,7 @@ class BattlePage extends Component {
       let armor = this.state.userArmor;
       let selfDamage = 0;
       let health=this.state.userHealth
-    let newEnemyArmor;
+      let newEnemyArmor;
       let userHealValue=0
       let newHealth=0
       playedCards.forEach((card) => {
@@ -162,7 +177,6 @@ newEnemyArmor=0
               this.setState({
                 frozen:true
               })
-              break;
            return;
           }
       });
@@ -231,5 +245,4 @@ newEnemyArmor=0
     );
   }
 }
-
 export default BattlePage;
