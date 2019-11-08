@@ -2,12 +2,13 @@ import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
 
-class Award extends Component {
+class Save extends Component {
   constructor() {
     super();
     this.state = {
       username: "",
-      userDeck: []
+      userDeck: [],
+      winCount: 0
     };
 
   }
@@ -20,10 +21,11 @@ onSubmit = e => {
 
 const userDeck = {
       username: this.state.username,
-      userDeck: this.state.userDeck
+      userDeck: this.state.userDeck,
+      winCount: this.state.winCount
     };
 
-    Axios.post("/api/users/gamestate", userDeck).then(data => {
+    Axios.post("/gamestate", userDeck).then(data => {
       console.log(data);
       this.props.history.push("/battlepage")
     }).catch (err=> {
@@ -53,7 +55,7 @@ render() {
           </button>
           </Link>
           <Link to="/battlepage">
-          <button type="button" className="btn mb-3 neon1 nes-pointer nes-btn">
+          <button type="button" onClick={this.onSubmit} className="btn mb-3 neon1 nes-pointer nes-btn">
             Save &amp; Continue
           </button>
           </Link>
@@ -63,4 +65,4 @@ render() {
   }
 }
 
-export default Award;
+export default Save;
