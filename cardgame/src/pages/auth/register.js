@@ -27,6 +27,7 @@ Axios.post("/api/users/register", newUser).then(data => {
   this.props.history.push("/battlepage")
 }).catch (err=> {
   console.log(err);
+  alert("Username already exists or password could not be validated")
   
 })
 

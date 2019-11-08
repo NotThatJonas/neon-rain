@@ -28,7 +28,8 @@ class Login extends Component {
         this.props.history.push("/battlepage");
       })
       .catch(err => {
-        console.log(err);
+        console.log(err.response);
+        alert("Username doesnt exists or password was wrong")
       });
 
     console.log(userData);
