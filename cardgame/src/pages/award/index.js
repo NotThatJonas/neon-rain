@@ -73,7 +73,7 @@ render() {
           </button>
           </Link>
           <Link to="/battlepage">
-          <button type="button" onClick={this.onSubmit} className="btn mb-3 neon1 nes-pointer nes-btn">
+          <button type="button" className="btn mb-3 neon1 nes-pointer nes-btn">
             Save &amp; Continue
           </button>
           </Link>
@@ -95,3 +95,5 @@ render() {
 }
 
 export default Save;
+
+
