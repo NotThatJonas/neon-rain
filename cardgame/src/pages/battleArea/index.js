@@ -42,16 +42,16 @@ class BattlePage extends Component {
 
   componentDidUpdate(prevprops, prevState) {
     const turnEnded = this.state.userTurnOver !== prevState.userTurnOver;
-    const frozen=this.state.frozen
+    const frozen = this.state.frozen
     if (turnEnded && !frozen) {
-     this.firstEnemyAction()
-   } 
-   else if (turnEnded && frozen)  {
-     this.setState({
-       frozen:false
-     })
-   } 
-   
+      this.firstEnemyAction()
+    }
+    else if (turnEnded && frozen) {
+      this.setState({
+        frozen: false
+      })
+    }
+
   }
 
 
@@ -68,7 +68,7 @@ class BattlePage extends Component {
       let newDamage = damage - this.state.currentEnemyArmor;
       let tempHealth = this.state.currentEnemyHealth;
       newHealth = tempHealth - newDamage;
-      if(newHealth<=0) {
+      if (newHealth <= 0) {
         gameWon = true;
       }
     }
@@ -79,7 +79,7 @@ class BattlePage extends Component {
       gameWon
     }
   }
-        
+
 
 
 
@@ -122,69 +122,71 @@ class BattlePage extends Component {
         return;
     }
   };
-      
-      
 
-      
-    
-    
-     
-       
-    
-    
-    handlePlayedCards = (playedCards) => {
 
-      let damage = 0;
-      let armor = this.state.userArmor;
-      let selfDamage = 0;
-      let health=this.state.userHealth
-      let newEnemyArmor;
-      let userHealValue=0
-      let newHealth=0
-      playedCards.forEach((card) => {
-          switch (card.id) {
-            case 1:
-            damage += card.damage;
-           
-            break
-      
-            case 2:
-              armor += card.armor
-          
-            break
-            case 3:
-            damage += card.damage;
-            selfDamage += card.selfDamage
-           break;
-           case 4:
-      
-            damage = damage*card.multiplier
-            break;
-            case 5:
-newEnemyArmor=0
-            this.setState({
-              currentEnemyArmor:newEnemyArmor
-            })
-            break;
-            case 6:
-              userHealValue=card.healValue
-              newHealth=this.state.userHealth+userHealValue
-              this.setState({
-                userHealth:newHealth
-              })
-            break;
-            case 7:
-              this.setState({
-                frozen:true
-              })
-           return;
-          }
-      });
-      if(damage){
-      let {newArmor, newHealth, gameWon} = this.userAttack(damage)
+
+  hasWon = () => {
+    let hasWon = this.state.winCount
+  }
+
+
+
+
+
+
+  handlePlayedCards = (playedCards) => {
+
+    let damage = 0;
+    let armor = this.state.userArmor;
+    let selfDamage = 0;
+    let health = this.state.userHealth
+    let newEnemyArmor;
+    let userHealValue = 0
+    let newHealth = 0
+    playedCards.forEach((card) => {
+      switch (card.id) {
+        case 1:
+          damage += card.damage;
+
+          break
+
+        case 2:
+          armor += card.armor
+
+          break
+        case 3:
+          damage += card.damage;
+          selfDamage += card.selfDamage
+          break;
+        case 4:
+
+          damage = damage * card.multiplier
+          break;
+        case 5:
+          newEnemyArmor = 0
+          this.setState({
+            currentEnemyArmor: newEnemyArmor
+          })
+          break;
+        case 6:
+          userHealValue = card.healValue
+          newHealth = this.state.userHealth + userHealValue
+          this.setState({
+            userHealth: newHealth
+          })
+          break;
+        case 7:
+          this.setState({
+            frozen: true
+          })
+          return;
+      }
+    });
+    if (damage) {
+      let { newArmor, newHealth, gameWon } = this.userAttack(damage)
       let turnOver = !this.state.userTurnOver
-        let tempHealth=health-selfDamage
-      if(gameWon){
+      let tempHealth = health - selfDamage
+      if (gameWon) {
         let tempWin = this.state.winCount + 1
         this.setState({
           winCount: tempWin
@@ -196,9 +198,10 @@ newEnemyArmor=0
         userTurnOver: turnOver,
         userArmor: armor,
         userHealth: tempHealth
-      })}
-     
-      else {
+      })
+    }
+
+    else {
       let turnOver = !this.state.userTurnOver
       this.setState({
         userTurnOver: turnOver,
@@ -221,7 +224,7 @@ newEnemyArmor=0
               ></progress>
             </div>
             <p className="hb">Player:{this.state.userHealth}</p>
-              
+
           </div>
           <div className="emhealth col-md-6">
             <div>
@@ -239,7 +242,8 @@ newEnemyArmor=0
           <br></br>
 
           <br></br>
-          <DeckBrain readPlayed={this.handlePlayedCards} />
+          <DeckBrain readPlayed={this.handlePlayedCards}
+            hasWon={this.state.winCount} />
         </div>
       </div>
     );
