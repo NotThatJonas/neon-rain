@@ -4,6 +4,7 @@ import enemies from "../../enemy.json";
 import DeckBrain from "../../components/deck-managment";
 import HealthBar from "../../components/plyr-healthbar";
 import EHBar from "../../components/ehealthbar";
+import { Redirect } from 'react-router-dom'
 
 var newWinCounts;
 var newEnemyObject;
@@ -21,7 +22,8 @@ class BattlePage extends Component {
     currentEnemyArmorGain: 0,
     playedCards: [],
     userTurnOver: false,
-    frozen: false
+    frozen: false,
+    redirect: false
   };
 
   componentDidMount() {
@@ -43,8 +45,16 @@ class BattlePage extends Component {
   componentDidUpdate(prevprops, prevState) {
     const turnEnded = this.state.userTurnOver !== prevState.userTurnOver;
     const frozen = this.state.frozen
+    let newWinCount=this.state.winCount
+    if(this.state.winCount > prevState.winCount){
+      this.setState({
+        redirect: true
+      })
+      this.renderRedirect()
+    }
     if (turnEnded && !frozen) {
       this.firstEnemyAction()
+
     }
     else if (turnEnded && frozen) {
       this.setState({
@@ -52,6 +62,11 @@ class BattlePage extends Component {
       })
     }
 
+  }
+  renderRedirect = () => {
+    if (this.state.redirect) {
+      return <Redirect to='/award' />
+    }
   }
 
 
@@ -127,6 +142,7 @@ class BattlePage extends Component {
 
   hasWon = () => {
     let hasWon = this.state.winCount
+   
   }
 
 
@@ -243,7 +259,10 @@ class BattlePage extends Component {
 
           <br></br>
           <DeckBrain readPlayed={this.handlePlayedCards}
-            hasWon={this.state.winCount} />
+            hasWon={this.state.winCount}
+           
+           />
+            {this.renderRedirect()}
         </div>
       </div>
     );
