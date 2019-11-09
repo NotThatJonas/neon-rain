@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-
+import "./style.css";
+import DrawBrain from "../../components/drawCards";
+import { booleanLiteral } from "@babel/types";
 
 
 class Save extends Component {
@@ -11,13 +13,22 @@ class Save extends Component {
     this.state = {
       username: "",
       userDeck: [],
-      winCount: 0
+      winCount: 0,
+      deckDrawn: false
     };
 
   }
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
+
+drawn = (p) => {
+  if(p){
+    this.setState({
+      deckDrawn:true
+    })
+  }
+}
 
 onSubmit = e => {
     e.preventDefault();
@@ -41,17 +52,19 @@ console.log(userDeck);
 
 
 render() {
-
+    if(this.state.deckDrawn){
     return (
       
       <div>
-        <div className="landing">
-        {/* <DeckBrain readPlayed={this.handlePlayedCards}></DeckBrain> */}
-          <div className="home-wrap">
-            <div className="home-inner"></div>
-          </div>
-        </div>
+        
+      <div className="d-flex carddeck justify-content-center" >
+          
+          {this.state.userTurnOver ? "true" : "false"}
+          <br></br>
 
+          <br></br>
+        
+        </div>
 
         <div className="caption text-center nes-pointer">
           <Link to="/">
@@ -64,10 +77,21 @@ render() {
             Save &amp; Continue
           </button>
           </Link>
+          
         </div>
-      </div>
-    );
+
+        </div>
+    )
+    }
+    else {
+      return (
+        <DrawBrain readPlayed={this.handlePlayedCards} 
+          drawn = {this.drawn}
+          />
+  
+    )
   }
+}
 }
 
 export default Save;

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards";
-import newCards from "../../newCards.json"
+
 import PlayArea from "../../components/playArea";
 import style from "./style.css";
 class DeckBrain extends Component {
@@ -10,24 +10,25 @@ class DeckBrain extends Component {
     hand: [],
     discard: [],
     playArea: [],
-    newCards:[],
+
     turnEnded: false
+
   };
 
   componentWillMount() {
     const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
-const newCardsShuffled=this.shuffleCards(newCards);
-console.log(newCardsShuffled);
+
 
     this.setState(
       {
         deck: shuffledDeck,
-        newCards: newCardsShuffled
+ 
       },
       this.drawCards
     );
   }
+
 
 
 
@@ -41,6 +42,7 @@ console.log(newCardsShuffled);
       this.props.readPlayed(this.state.playArea);
       this.discardPlayed();
     }
+
   }
 
   toPlay = index => {
@@ -126,7 +128,6 @@ console.log(newCardsShuffled);
       let card = originalCards.splice(randomNumber, 1)[0];
       randomCardsArray.push(card);
     }
-
     return randomCardsArray;
   };
 
@@ -158,7 +159,7 @@ console.log(newCardsShuffled);
         </div>
       );
     });
-
+ 
     return (
       // <div className="nes-container decks is-rounded">
         <div id="gameArea">
@@ -174,7 +175,11 @@ console.log(newCardsShuffled);
           <div className="handArea">{hand.length ? hand : null}</div>
         </div>
       // </div>
-    );
-  }
+    )
+    ;}
+
+  
+
 }
+
 export default DeckBrain;
