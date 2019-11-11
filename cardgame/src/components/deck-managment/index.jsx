@@ -16,20 +16,35 @@ class DeckBrain extends Component {
   };
 
   componentWillMount() {
+
     const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
-
-
     this.setState(
       {
         deck: shuffledDeck,
- 
       },
+      // this.saveCards(this.state.deck),
       this.drawCards
     );
   }
 
+// saveCards = deck =>{
 
+//       const userData = {
+//   deck:this.state.deck
+//     };
+//     Axios.post("/api/users/login", userData)
+//     .then(data => {
+//       console.log(data);
+   
+//     })
+//     .catch(err => {
+//       console.log(err.response);
+     
+//     });
+
+//   console.log(userData);
+// }
 
 
 

@@ -16,6 +16,7 @@ class DrawBrain extends Component {
   };
 
   componentDidMount() {
+
     const newCardsShuffled = this.shuffleCards(newCardsFromJson);
     console.log(newCardsShuffled);
 
@@ -43,6 +44,26 @@ class DrawBrain extends Component {
     });
   
   };
+
+//   addNewCards = ()=> {
+
+//       const userData = {
+//  addedCards:this.state.finalNewCards
+//     };
+//     Axios.post("/api/users/login", userData)
+//     .then(data => {
+//       console.log(data);
+   
+//     })
+//     .catch(err => {
+//       console.log(err.response);   
+//     });
+//   console.log(userData);
+//   }
+
+
+
+
  
   toDraw = index => {
     // console.log(this.state.hand);
@@ -56,6 +77,7 @@ class DrawBrain extends Component {
      finalNewCards: tempNewDeck
     }, this.drawNewCards);
     if(this.state.finalNewCards.length === 3){
+      // this.addNewCards(this.state.finalNewCards)
      this.props.drawn(true)
      
     }

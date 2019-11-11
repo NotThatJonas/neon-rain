@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./style.css";
 import enemies from "../../enemy.json";
+import Axios from "axios";
 import DeckBrain from "../../components/deck-managment";
 import HealthBar from "../../components/plyr-healthbar";
 import EHBar from "../../components/ehealthbar";
@@ -27,13 +28,21 @@ class BattlePage extends Component {
   };
 
   componentDidMount() {
-    let currentEnemy = enemies[this.state.winCount];
+    let localWins=parseInt(localStorage.getItem('userWinCount'));
+    console.log(localStorage.getItem('userWinCount'));
+
+    
+    // this.atStartOfBattle()
+    let currentEnemy = enemies[localWins];
+    
+    
     let currentEnemyHealth = currentEnemy.health;
     let currentEnemyArmor = currentEnemy.armor;
     let newEnemyAbilities = currentEnemy.actions;
     let newEnemyAttack = currentEnemy.attack;
     let newEnemyArmorGain = currentEnemy.armorGain;
     this.setState({
+      winCount: localWins,
       currentEnemyHealth: currentEnemyHealth,
       currentEnemyArmor: currentEnemyArmor,
       currentEnemyAbilities: newEnemyAbilities,
@@ -45,8 +54,9 @@ class BattlePage extends Component {
   componentDidUpdate(prevprops, prevState) {
     const turnEnded = this.state.userTurnOver !== prevState.userTurnOver;
     const frozen = this.state.frozen
-    let newWinCount=this.state.winCount
-    if(this.state.winCount > prevState.winCount){
+
+    if(this.state.currentEnemyHealth <= 0){
+      // this.saveState(this.state.winCount)
       this.setState({
         redirect: true
       })
@@ -65,11 +75,50 @@ class BattlePage extends Component {
   }
   renderRedirect = () => {
     if (this.state.redirect) {
+      
+      localStorage.setItem('userWinCount', this.state.winCount);
       return <Redirect to='/award' />
     }
   }
 
+  // saveState = winCount => {
+  //   winCount.preventDefault()
+  //   const userData = {
+  // winCount:this.state.winCount
+  //   };
+  //   Axios.post("/api/users/login", userData)
+  //   .then(data => {
+  //     console.log(data);
+  //     this.props.history.push("/award");
+  //   })
+  //   .catch(err => {
+  //     console.log(err.response);
+     
+  //   });
 
+  // console.log(userData);
+  // }
+
+  // atStartOfBattle = winCount => {
+  //   Axios.GET("/api/users/login")
+  //     .then(data => {
+  //       console.log(data);
+  //       console.log(data.userData.winCount);  
+  //       let userWinCount=data.userData.winCount
+  //         let userCards=data.userData.deck 
+  //         let newCards = data.userData.addedCards
+  //       this.setState({
+  //         wincount:userWinCount
+  //       })
+  //     })
+  //     .catch(err => {
+  //       console.log(err.response);
+  //       alert("Username doesnt exists or password was wrong")
+  //     });
+  // };
+
+ 
+ 
 
 
   userAttack = (damage) => {
@@ -140,10 +189,7 @@ class BattlePage extends Component {
 
 
 
-  hasWon = () => {
-    let hasWon = this.state.winCount
-   
-  }
+  
 
 
 
@@ -269,3 +315,6 @@ class BattlePage extends Component {
   }
 }
 export default BattlePage;
+
+
+

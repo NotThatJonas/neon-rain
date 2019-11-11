@@ -4,7 +4,7 @@ import Axios from "axios";
 import "./style.css";
 import DrawBrain from "../../components/drawCards";
 import { booleanLiteral } from "@babel/types";
-
+import { Redirect } from 'react-router-dom'
 
 class Save extends Component {
 
@@ -30,25 +30,34 @@ drawn = (p) => {
   }
 }
 
-onSubmit = e => {
-    e.preventDefault();
+renderRedirect = () => {
+  if (this.state.redirect) {
+    return <Redirect to='/battlepage' />
+  }
+}
 
-const userDeck = {
-      username: this.state.username,
-      userDeck: this.state.userDeck,
-      winCount: this.state.winCount
-    };
+// onSubmit = e => {
+//     e.preventDefault();
 
-    Axios.post("/gamestate", userDeck).then(data => {
-      console.log(data);
-      this.props.history.push("/battlepage")
-    }).catch (err=> {
-      console.log(err);
-      
-    })
+// const userDeck = {
+//       username: this.state.username,
+//       userDeck: this.state.userDeck,
+//       winCount: this.state.winCount
+//     };
+//     Axios.post("/gamestate", userDeck).then(data => {
+//       console.log(data);
+//       this.props.history.push("/battlepage")
+//     }).catch (err=> {
+//       console.log(err);    
+//     })
+// console.log(userDeck);
+//   };
 
-console.log(userDeck);
-  };
+
+
+
+
+
 
 
 render() {
