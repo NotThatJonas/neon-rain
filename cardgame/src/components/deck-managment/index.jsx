@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards";
+import Axios from "axios"
 
 import PlayArea from "../../components/playArea";
 import style from "./style.css";
@@ -15,8 +16,13 @@ class DeckBrain extends Component {
 
   };
 
+
+
   componentWillMount() {
 
+    Axios.get("api/users/get/gamestate").then((data) => {
+      console.log(data)
+      console.log("test");
     const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
     this.setState(
