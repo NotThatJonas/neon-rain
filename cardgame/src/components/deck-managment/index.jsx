@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards";
 import Axios from "axios"
-
 import PlayArea from "../../components/playArea";
 import style from "./style.css";
 class DeckBrain extends Component {
@@ -32,7 +31,8 @@ class DeckBrain extends Component {
       // this.saveCards(this.state.deck),
       this.drawCards
     );
-  }
+  })
+}
 
 // saveCards = deck =>{
 

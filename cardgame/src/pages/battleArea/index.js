@@ -33,7 +33,7 @@ class BattlePage extends Component {
 
     
     // this.atStartOfBattle()
-    let currentEnemy = enemies[localWins];
+    let currentEnemy = enemies[0];
     
     
     let currentEnemyHealth = currentEnemy.health;
