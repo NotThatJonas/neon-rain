@@ -133,7 +133,7 @@ console.log(newCardsShuffled);
   render() {
     let hand = this.state.hand.map((card, index) => {
       return (
-        <div className="handCard row d-flex justify-content-center">
+        <div className="handCard row1 d-flex justify-content-center">
           <Cards
             name={card.name}
             image={card.image}
@@ -147,7 +147,7 @@ console.log(newCardsShuffled);
 
     let playArea = this.state.playArea.map((card, index) => {
       return (
-        <div className="playCard row d-flex justify-content-center">
+        <div className="playCard row2 d-flex justify-content-center">
           <Cards
             name={card.name}
             image={card.image}
@@ -161,7 +161,7 @@ console.log(newCardsShuffled);
 
     return (
       // <div className="nes-container decks is-rounded">
-        <div id="gameArea">
+        <div id="gameArea stuffs">
           <div className="row d-flex justify-content-center">
             <button
               className="nes-pointer endTurn neon4 mb-3 nes-btn"
