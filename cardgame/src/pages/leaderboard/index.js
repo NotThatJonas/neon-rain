@@ -17,11 +17,13 @@ class Leaderboards extends Component {
             <br></br>
             <div className=" neon2 nes">
               
-              <h1 style="text0ali"> Neon Rain</h1>
+              <h1> Neon Rain</h1>
               <br></br>
             <p>Choose the 2 cards you want to play but be careful of play order, each card will move into the play area, the left most card will trigger first</p>
             <br></br>
-              <p>Once you have chosen both cards, click the end turn button, but beware after your done with your turn the enemey will go</p>
+              <p>Once you have chosen both cards, click the end turn button, but beware after your done with your turn the enemy will go</p>
+              <br></br>
+              <p>After you defeat your enemy, you will get the option to add 3 new cards to your deck! Choose Wisely as these new cards will help you defeat your next enemy should you choose to continue!!!</p>
             </div>
           </div>
       </div>
