@@ -20,7 +20,7 @@ function App() {
       <Router>
         <div>
   
-        <Route exact path="/leaderboards" component={Leaderboards} />
+        <Route exact path="/rules" component={Leaderboards} />
         <Route exact path="/" component={Home} />   
         <Route exact path="/battlepage" component={BattlePage} />  
         <Route exact path="/register" component={Register} />

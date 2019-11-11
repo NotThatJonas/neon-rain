@@ -38,7 +38,7 @@ class Home extends Component {
             Resume  
           </button>
           </Link>
-          <Link to="/leaderboards">
+          <Link to="/rules">
           <button type="button" className="btn mb-3 neon1 nes-pointer nes-btn">
             Rules
           </button>
