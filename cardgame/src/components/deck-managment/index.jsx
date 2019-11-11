@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards";
-import newCards from "../../newCards.json"
+import Axios from "axios"
 import PlayArea from "../../components/playArea";
 import style from "./style.css";
 class DeckBrain extends Component {
@@ -10,25 +10,47 @@ class DeckBrain extends Component {
     hand: [],
     discard: [],
     playArea: [],
-    newCards:[],
+
     turnEnded: false
+
   };
 
+
+
   componentWillMount() {
+
+    Axios.get("api/users/get/gamestate").then((data) => {
+      console.log(data)
+      console.log("test");
     const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
-const newCardsShuffled=this.shuffleCards(newCards);
-console.log(newCardsShuffled);
-
     this.setState(
       {
         deck: shuffledDeck,
-        newCards: newCardsShuffled
       },
+      // this.saveCards(this.state.deck),
       this.drawCards
     );
-  }
+  })
+}
 
+// saveCards = deck =>{
+
+//       const userData = {
+//   deck:this.state.deck
+//     };
+//     Axios.post("/api/users/login", userData)
+//     .then(data => {
+//       console.log(data);
+   
+//     })
+//     .catch(err => {
+//       console.log(err.response);
+     
+//     });
+
+//   console.log(userData);
+// }
 
 
 
@@ -41,6 +63,7 @@ console.log(newCardsShuffled);
       this.props.readPlayed(this.state.playArea);
       this.discardPlayed();
     }
+
   }
 
   toPlay = index => {
@@ -126,7 +149,6 @@ console.log(newCardsShuffled);
       let card = originalCards.splice(randomNumber, 1)[0];
       randomCardsArray.push(card);
     }
-
     return randomCardsArray;
   };
 
@@ -158,7 +180,7 @@ console.log(newCardsShuffled);
         </div>
       );
     });
-
+ 
     return (
       // <div className="nes-container decks is-rounded">
         <div id="gameArea stuffs">
@@ -174,7 +196,11 @@ console.log(newCardsShuffled);
           <div className="handArea no-gutters">{hand.length ? hand : null}</div>
         </div>
       // </div>
-    );
-  }
+    )
+    ;}
+
+  
+
 }
+
 export default DeckBrain;

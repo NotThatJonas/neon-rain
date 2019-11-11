@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import Axios from "axios";
-
-
+import "./style.css";
+import DrawBrain from "../../components/drawCards";
+import { booleanLiteral } from "@babel/types";
+import { Redirect } from 'react-router-dom'
 
 class Save extends Component {
 
@@ -11,7 +13,8 @@ class Save extends Component {
     this.state = {
       username: "",
       userDeck: [],
-      winCount: 0
+      winCount: 0,
+      deckDrawn: false
     };
 
   }
@@ -19,39 +22,58 @@ onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
   };
 
-onSubmit = e => {
-    e.preventDefault();
-
-const userDeck = {
-      username: this.state.username,
-      userDeck: this.state.userDeck,
-      winCount: this.state.winCount
-    };
-
-    Axios.post("/gamestate", userDeck).then(data => {
-      console.log(data);
-      this.props.history.push("/battlepage")
-    }).catch (err=> {
-      console.log(err);
-      
+drawn = (p) => {
+  if(p){
+    this.setState({
+      deckDrawn:true
     })
+  }
+}
 
-console.log(userDeck);
-  };
+renderRedirect = () => {
+  if (this.state.redirect) {
+    return <Redirect to='/battlepage' />
+  }
+}
+
+// onSubmit = e => {
+//     e.preventDefault();
+
+// const userDeck = {
+//       username: this.state.username,
+//       userDeck: this.state.userDeck,
+//       winCount: this.state.winCount
+//     };
+//     Axios.post("/gamestate", userDeck).then(data => {
+//       console.log(data);
+//       this.props.history.push("/battlepage")
+//     }).catch (err=> {
+//       console.log(err);    
+//     })
+// console.log(userDeck);
+//   };
+
+
+
+
+
+
 
 
 render() {
-
+    if(this.state.deckDrawn){
     return (
       
       <div>
-        <div className="landing">
-        {/* <DeckBrain readPlayed={this.handlePlayedCards}></DeckBrain> */}
-          <div className="home-wrap">
-            <div className="home-inner"></div>
-          </div>
-        </div>
+        
+      <div className="d-flex carddeck justify-content-center" >
+          
+          {this.state.userTurnOver ? "true" : "false"}
+          <br></br>
 
+          <br></br>
+        
+        </div>
 
         <div className="caption text-center nes-pointer">
           <Link to="/">
@@ -60,14 +82,27 @@ render() {
           </button>
           </Link>
           <Link to="/battlepage">
-          <button type="button" onClick={this.onSubmit} className="btn mb-3 neon1 nes-pointer nes-btn">
+          <button type="button" className="btn mb-3 neon1 nes-pointer nes-btn">
             Save &amp; Continue
           </button>
           </Link>
+          
         </div>
-      </div>
-    );
+
+        </div>
+    )
+    }
+    else {
+      return (
+        <DrawBrain readPlayed={this.handlePlayedCards} 
+          drawn = {this.drawn}
+          />
+  
+    )
   }
+}
 }
 
 export default Save;
+
+

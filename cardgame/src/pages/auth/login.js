@@ -22,7 +22,7 @@ class Login extends Component {
       password: this.state.password
     };
 
-    Axios.post("/api/users/login", userData)
+    Axios.post("https://expressneonrain.herokuapp.com/api/users/login", userData)
       .then(data => {
         console.log(data);
         this.props.history.push("/battlepage");
@@ -34,6 +34,8 @@ class Login extends Component {
 
     console.log(userData);
   };
+
+  
   render() {
     const { errors } = this.state;
     return (
