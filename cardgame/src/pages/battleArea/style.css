@@ -79,6 +79,6 @@
 }
 .raise:hover{
   transform: translate(0px, -100px);
+  transition: all .2s ease-in-out;
 }
-.grow { transition: all .2s ease-in-out; }
 /* .grow:hover { transform: scale(2.1); } */

@@ -155,7 +155,7 @@ class DeckBrain extends Component {
   render() {
     let hand = this.state.hand.map((card, index) => {
       return (
-        <div className="handCard row d-flex justify-content-center">
+        <div className="handCard row1 d-flex justify-content-center">
           <Cards
             name={card.name}
             image={card.image}
@@ -169,7 +169,7 @@ class DeckBrain extends Component {
 
     let playArea = this.state.playArea.map((card, index) => {
       return (
-        <div className="playCard row d-flex justify-content-center">
+        <div className="playCard row2 d-flex justify-content-center">
           <Cards
             name={card.name}
             image={card.image}
@@ -183,7 +183,7 @@ class DeckBrain extends Component {
  
     return (
       // <div className="nes-container decks is-rounded">
-        <div id="gameArea">
+        <div id="gameArea stuffs">
           <div className="row d-flex justify-content-center">
             <button
               className="nes-pointer endTurn neon4 mb-3 nes-btn"
@@ -193,7 +193,7 @@ class DeckBrain extends Component {
             </button>
           </div>
           <div className="playArea">{playArea.length ? playArea : null}</div>
-          <div className="handArea">{hand.length ? hand : null}</div>
+          <div className="handArea no-gutters">{hand.length ? hand : null}</div>
         </div>
       // </div>
     )
