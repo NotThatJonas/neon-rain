@@ -19,29 +19,38 @@ class DeckBrain extends Component {
 
 
   componentWillMount() {
+
     Axios.get("api/users/get/gamestate").then((data) => {
       console.log(data)
       console.log("test");
-      
-      // this.setState({
-      //   deck: this.shuffleCards(res.cards)
-      // })
-    }
-    )
-    // const shuffledDeck = this.shuffleCards(deckJson);
-    // console.log(shuffledDeck);
-
-
-    // this.setState(
-    //   {
-    //     deck: shuffledDeck,
- 
-    //   },
-    //   this.drawCards
-    // );
+    const shuffledDeck = this.shuffleCards(deckJson);
+    console.log(shuffledDeck);
+    this.setState(
+      {
+        deck: shuffledDeck,
+      },
+      // this.saveCards(this.state.deck),
+      this.drawCards
+    );
   }
 
+// saveCards = deck =>{
 
+//       const userData = {
+//   deck:this.state.deck
+//     };
+//     Axios.post("/api/users/login", userData)
+//     .then(data => {
+//       console.log(data);
+   
+//     })
+//     .catch(err => {
+//       console.log(err.response);
+     
+//     });
+
+//   console.log(userData);
+// }
 
 
 
