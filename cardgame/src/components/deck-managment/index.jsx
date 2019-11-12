@@ -1,28 +1,44 @@
-import React, { Component } from "react";
+import React, { useState, Component } from "react";
 import deckJson from "../../cards.json";
 import Cards from "../cards";
 import Axios from "axios"
-import PlayArea from "../../components/playArea";
+import EnemyModal from "../../components/enemiesActionModul";
 import style from "./style.css";
+// import Modal from 'react-bootstrap/Modal';
+// import Button from 'react-bootstrap/Button';
+
+// var Modal = require('react-bootstrap-modal')
 class DeckBrain extends Component {
+
+  
+ 
+
   state = {
     deck: [],
     hand: [],
     discard: [],
     playArea: [],
-
     turnEnded: false
-
   };
 
 
 
   componentWillMount() {
+    let newestDeck=[]
+    let newCards=[]
+  
+    if (localStorage.getItem('userNewDeck')!=null){
+   newCards = JSON.parse(localStorage.getItem('userNewDeck'))
+    console.log(newCards);
+    
+      newestDeck=[...newCards,...deckJson]
+    }
+    else {
+newestDeck=deckJson
+    }
+      console.log(newestDeck)
+    const shuffledDeck = this.shuffleCards(newestDeck);
 
-    // Axios.get("api/users/get/gamestate").then((data) => {
-    //   console.log(data)
-      console.log("test");
-    const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
     this.setState(
       {
@@ -31,8 +47,9 @@ class DeckBrain extends Component {
       // this.saveCards(this.state.deck),
       this.drawCards
     );
-  // })
-}
+  }
+// }
+
 
 // saveCards = deck =>{
 
@@ -54,12 +71,15 @@ class DeckBrain extends Component {
 
 
 
+
+
   
 
   componentDidUpdate(prevprops, prevState) {
     const turnEnded = this.state.turnEnded !== prevState.turnEnded;
 
     if (turnEnded) {
+
       this.props.readPlayed(this.state.playArea);
       this.discardPlayed();
     }
@@ -120,12 +140,18 @@ class DeckBrain extends Component {
   };
 
   endTurn = () => {
+    
     let turn = !this.state.turnEnded
     console.log("ending turn");
     this.setState({
       turnEnded: turn
     });
   };
+
+
+
+
+
 
   toHand = (index) => {
     let tempHand = this.state.hand;
@@ -153,9 +179,13 @@ class DeckBrain extends Component {
   };
 
   render() {
+    
     let hand = this.state.hand.map((card, index) => {
       return (
+       
+        
         <div className="handCard row1 d-flex justify-content-center">
+        
           <Cards
             name={card.name}
             image={card.image}
@@ -163,7 +193,10 @@ class DeckBrain extends Component {
             handleClick={this.toPlay}
             currentIndex={index}
           />
+          
         </div>
+
+
       );
     });
 
@@ -181,8 +214,12 @@ class DeckBrain extends Component {
       );
     });
  
+ 
+
+
     return (
       // <div className="nes-container decks is-rounded">
+      
         <div id="gameArea stuffs">
           <div className="row d-flex justify-content-center">
             <button
@@ -191,7 +228,13 @@ class DeckBrain extends Component {
             >
               End Turn
             </button>
+            <div>
+        
+        </div>
           </div>
+          <div>
+
+    </div>
           <div className="playArea">{playArea.length ? playArea : null}</div>
           <div className="handArea no-gutters">{hand.length ? hand : null}</div>
         </div>
@@ -204,3 +247,5 @@ class DeckBrain extends Component {
 }
 
 export default DeckBrain;
+
+
