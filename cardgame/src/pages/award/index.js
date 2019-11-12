@@ -9,6 +9,7 @@ var UserInitialDeck = require('../../cards.json');
 
 
 
+
 class Save extends Component {
 
   constructor() {
@@ -66,8 +67,6 @@ renderRedirect = () => {
 //     })
 // console.log(userDeck);
 //   };
-
-
 
 
 
