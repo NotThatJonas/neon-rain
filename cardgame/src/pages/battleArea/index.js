@@ -300,12 +300,11 @@ class BattlePage extends Component {
           </div>
         </div>
         <div className="d-flex carddeck justify-content-center">
-          {this.state.userTurnOver ? "true" : "false"}
           <br></br>
 
           <br></br>
           <DeckBrain readPlayed={this.handlePlayedCards}
-            hasWon={this.state.winCount}
+            // hasWon={this.state.winCount}
            
            />
             {this.renderRedirect()}

@@ -1,9 +1,18 @@
 .row {
   margin: 0%;
 }
+.row1 {
+  margin-right: -60px;
+  margin-left: -60px;
+}
 .playArea {
+  position: relative;
   display: flex;
   justify-content: center;
+  margin: 0;
+  bottom: 0% !important;
+  padding-top: 100px !important;
+  transform: scale(0.7);
 }
 .playCard {
   width: 20%;
@@ -12,10 +21,21 @@
 .handArea {
   display: flex;
   justify-content: center;
+  position: absolute;
 }
 
 .handCard {
+  padding-top: 100px !important;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
   width: 20%;
   padding: 10px;
   transform: scale(0.7);
+}
+.stuffs{
+  transform: scale(0.7);
+}
+.row2 {
+  margin-right: -60px;
+  margin-left: -60px;
 }
