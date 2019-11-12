@@ -12,12 +12,12 @@ class Leaderboards extends Component {
         </div>
           <div className="container">
             <div>
-              <h1 className="neon3 head">Rules</h1>
+              <h1 className="neon3 head"></h1>
             </div>
             <br></br>
             <div className=" neon2 nes">
               
-              <h1> Neon Rain</h1>
+              <h1> </h1>
               <br></br>
             <p>Choose the 2 cards you want to play but be careful of play order, each card will move into the play area, the left most card will trigger first</p>
             <br></br>
