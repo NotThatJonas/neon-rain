@@ -66,34 +66,34 @@ renderRedirect = () => {
 //   };
 
 
-render() {
-    if(this.state.deckDrawn){
-    return (
+// render() {
+//     if(this.state.deckDrawn){
+//     return (
       
-      <div>
-      <div className="d-flex carddeck justify-content-center" >
+//       <div></div>
+//       <div className="d-flex carddeck justify-content-center" >
           
-          {this.state.userTurnOver ? "true" : "false"}
-          <br></br>
+//           {this.state.userTurnOver ? "true" : "false"}
+//           <br></br>
 
-          <br></br>
+//           <br></br>
         
-        </div>
+//         </div>
 
 
-  drawn = p => {
-    if (p) {
-      this.setState({
-        deckDrawn: true
-      });
-    }
-  };
+  // drawn = p => {
+  //   if (p) {
+  //     this.setState({
+  //       deckDrawn: true
+  //     });
+  //   }
+  // };
 
-  renderRedirect = () => {
-    if (this.state.redirect) {
-      return <Redirect to="/battlepage" />;
-    }
-  };
+  // renderRedirect = () => {
+  //   if (this.state.redirect) {
+  //     return <Redirect to="/battlepage" />;
+  //   }
+  // };
 
   // onSubmit = e => {
   //     e.preventDefault();
@@ -135,11 +135,11 @@ render() {
             </Link>
             <Link to="/battlepage">
               <button
-                onClick={this.handleOnClick}
                 type="button"
                 className="btn mb-3 neon1 nes-pointer nes-btn"
-              >
+                onClick={this.handleOnClick}>
                 Save &amp; Continue
+                
               </button>
             </Link>
           </div>
@@ -147,12 +147,18 @@ render() {
       );
     } else {
       return (
+        <div>
+          <div className="landing6"></div>
+          <div className="awardCards">
         <DrawBrain
-          readPlayed={this.handlePlayedCards}
-          // currentDeck={this.userDeck}
-          drawn={this.drawn}
+        readPlayed={this.handlePlayedCards}
+        // currentDeck={this.userDeck}
+        drawn={this.drawn}
         />
-      );
+        </div>
+        </div>
+
+        );
     }
   }
 }
