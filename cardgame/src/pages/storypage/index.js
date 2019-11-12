@@ -18,11 +18,11 @@ class Storypage extends Component {
             <br></br>
             <div className=" neon2 nes">
               
-              <p> The year is 2116 and the the United Nations of Governments are on the brink of war with Coalition of Corporations. The gaberial virus has shattered the loosely held peace and both parties are desperately looking for the cure as they believe it will give them the winning hand when the conflict begins.</p>
+              <p> The year is 2116 and the the United Nations of Governments are on the brink of war with Coalition of Corporations. The Gaberial virus has shattered the loosely held peace and both parties are desperately looking for the cure as they believe it will give them the winning hand when the conflict begins.</p>
               <br></br>
-            <p>Rumor on the street is that Dr. Drea Wheetman has found a cure but is going to hand it off to an unknown organization that believes the cure should be free for everyone</p>
+            <p>Rumor on the street is that Dr. C Wheetman has found a cure but is going to hand it off to an unknown organization that believes the cure should be free for everyone</p>
             <br></br>
-              <p>You’ve been given the mission to deliver the code for the cure but you’ve been betrayed, both the Corporations and the Governments know who you are and that you have the code. They have sent their top assets to retrieve it from you!
+              <p>Thomas S. your loremaster has been given the mission to deliver the code for the cure but you’ve been betrayed by the Jonas Clan, both the Corporations and the Governments now know who you are and that you have the code. They have sent their top assets to retrieve it from you!
               </p>
         
             </div>   

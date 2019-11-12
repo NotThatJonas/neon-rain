@@ -1,7 +1,7 @@
 [
     {
         "id": 0,
-        "name": "Enemy 1",
+        "name": "js@n",
         "health":50,
         "actions":[1,2],
         "attack": 7,
@@ -12,7 +12,7 @@
     },
     {
         "id": 1,
-        "name": "Enemy 2",
+        "name": "B@m",
         "health":100,
         "actions":[1,2],
         "attack": 12,
@@ -23,7 +23,7 @@
     },
     {
         "id": 2,
-        "name": "Enemy 3",
+        "name": "$yber",
         "health":175,
         "actions":[1,2],
         "attack": 17,
