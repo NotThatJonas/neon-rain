@@ -9,6 +9,7 @@ import BattlePage from "./pages/battleArea"
 import Register from "./pages/auth/register";
 import Login from "./pages/auth/login";
 import Save from "./pages/award/index.js";
+import Storypage from "./pages/storypage"
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
         <Route exact path="/register" component={Register} />
           <Route exact path="/login" component={Login} />
           <Route exact path="/award" component={Save} />
+          <Route exact path="/storypage" component={Storypage} />
       </div>
         </Router>
 

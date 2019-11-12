@@ -19,8 +19,8 @@ class DeckBrain extends Component {
 
   componentWillMount() {
 
-    Axios.get("api/users/get/gamestate").then((data) => {
-      console.log(data)
+    // Axios.get("api/users/get/gamestate").then((data) => {
+    //   console.log(data)
       console.log("test");
     const shuffledDeck = this.shuffleCards(deckJson);
     console.log(shuffledDeck);
@@ -31,7 +31,7 @@ class DeckBrain extends Component {
       // this.saveCards(this.state.deck),
       this.drawCards
     );
-  })
+  // })
 }
 
 // saveCards = deck =>{
