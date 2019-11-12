@@ -26,7 +26,7 @@ class BattlePage extends Component {
     userHealth: 100,
     userArmor: 0,
     enemies,
-    currentEnemyHealth: 0,
+    currentEnemyHealth: 1,
     currentEnemyArmor: 0,
     currentEnemyAbilities: [],
     currentEnemyAttack: 0,
@@ -91,15 +91,21 @@ class BattlePage extends Component {
         frozen: false
       });
     }
+    if(this.state.userTurnOver==true) {
+
+      setTimeout(function(){
+           this.setState({userTurnOver:false});
+      }.bind(this),2000); 
+ }
   }
   renderRedirect = () => {
-    if (this.state.redirect) {
-
+    
+    if (this.state.currentEnemyHealth <= 0){
 
       localStorage.setItem('userWinCount', this.state.winCount);
       return <Redirect to='/award' />
     }
-  };
+  }
 
 
   saveState = winCount => {
@@ -310,15 +316,6 @@ class BattlePage extends Component {
       });
     }
   };
-
-  componentDidUpdate(){
-    if(this.state.userTurnOver==true) {
-
-      setTimeout(function(){
-           this.setState({userTurnOver:false});
-      }.bind(this),2000); 
- }
-  }
 
 
   render() {
