@@ -21,10 +21,6 @@ class Login extends Component {
       username: this.state.username,
       password: this.state.password
     };
-
-   
-      const [value, setValue] = React.useState('');
-      const onInput = event => setValue(event.target.value);
     
 
     Axios.post("https://expressneonrain.herokuapp.com/api/users/login", userData)
@@ -70,7 +66,7 @@ class Login extends Component {
                 <input
                   error={errors.username}
                   value={this.state.username}
-                  onChange={this.onChange}  onChange={this.onInput}
+                  onChange={this.onChange} 
                   type="username"
                   id="username"
                   className="nes-input nes-pointer neon1"
