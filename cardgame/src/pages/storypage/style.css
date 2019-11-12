@@ -10,8 +10,10 @@
   align-items: center;
   justify-content: center;
 }
-.neon2 {
-
+.neon26 {
+  font-size: 1.2em !important;
+  width: 90%;
+padding: 2%;
   top: 100%;
   font-size: 1.5em;
   background-color: #b6379e;
@@ -51,7 +53,7 @@
   -webkit-transform: translateZ(0);
   transform: translateZ(0);
   will-change: transform;
-  background-image: url(./rain1.gif);
+  background-image: url(./sky.gif);
 }
 .home-wrap {
   clip: rect(0, auto, auto, 0);

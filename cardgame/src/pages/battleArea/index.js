@@ -5,7 +5,12 @@ import Axios from "axios";
 import DeckBrain from "../../components/deck-managment";
 import HealthBar from "../../components/plyr-healthbar";
 import EHBar from "../../components/ehealthbar";
-import { Redirect } from 'react-router-dom'
+import { Redirect } from "react-router-dom";
+import FireEm from './fire.gif';
+import IdleEm from './idle.gif';
+import Death from './death.gif';
+import Player from './players.png'
+// import Rain from './rain.gif'
 
 var newWinCounts;
 var newEnemyObject;
@@ -28,14 +33,12 @@ class BattlePage extends Component {
   };
 
   componentDidMount() {
-    let localWins=parseInt(localStorage.getItem('userWinCount'));
-    console.log(localStorage.getItem('userWinCount'));
+    let localWins = parseInt(localStorage.getItem("userWinCount"));
+    console.log(localStorage.getItem("userWinCount"));
 
-    
     // this.atStartOfBattle()
     let currentEnemy = enemies[0];
-    
-    
+
     let currentEnemyHealth = currentEnemy.health;
     let currentEnemyArmor = currentEnemy.armor;
     let newEnemyAbilities = currentEnemy.actions;
@@ -53,33 +56,29 @@ class BattlePage extends Component {
 
   componentDidUpdate(prevprops, prevState) {
     const turnEnded = this.state.userTurnOver !== prevState.userTurnOver;
-    const frozen = this.state.frozen
+    const frozen = this.state.frozen;
 
-    if(this.state.currentEnemyHealth <= 0){
+    if (this.state.currentEnemyHealth <= 0) {
       // this.saveState(this.state.winCount)
       this.setState({
         redirect: true
-      })
-      this.renderRedirect()
+      });
+      this.renderRedirect();
     }
     if (turnEnded && !frozen) {
-      this.firstEnemyAction()
-
-    }
-    else if (turnEnded && frozen) {
+      this.firstEnemyAction();
+    } else if (turnEnded && frozen) {
       this.setState({
         frozen: false
-      })
+      });
     }
-
   }
   renderRedirect = () => {
     if (this.state.redirect) {
-      
-      localStorage.setItem('userWinCount', this.state.winCount);
-      return <Redirect to='/award' />
+      localStorage.setItem("userWinCount", this.state.winCount);
+      return <Redirect to="/award" />;
     }
-  }
+  };
 
   // saveState = winCount => {
   //   winCount.preventDefault()
@@ -93,7 +92,7 @@ class BattlePage extends Component {
   //   })
   //   .catch(err => {
   //     console.log(err.response);
-     
+
   //   });
 
   // console.log(userData);
@@ -103,9 +102,9 @@ class BattlePage extends Component {
   //   Axios.GET("/api/users/login")
   //     .then(data => {
   //       console.log(data);
-  //       console.log(data.userData.winCount);  
+  //       console.log(data.userData.winCount);
   //       let userWinCount=data.userData.winCount
-  //         let userCards=data.userData.deck 
+  //         let userCards=data.userData.deck
   //         let newCards = data.userData.addedCards
   //       this.setState({
   //         wincount:userWinCount
@@ -117,14 +116,10 @@ class BattlePage extends Component {
   //     });
   // };
 
- 
- 
-
-
-  userAttack = (damage) => {
+  userAttack = damage => {
     let newArmor = 0;
     let gameWon = false;
-    let newHealth
+    let newHealth;
     if (this.state.currentEnemyArmor >= damage) {
       let tempArmor = this.state.currentEnemyArmor;
       newArmor = tempArmor - damage;
@@ -141,11 +136,8 @@ class BattlePage extends Component {
       newArmor,
       newHealth,
       gameWon
-    }
-  }
-
-
-
+    };
+  };
 
   firstEnemyAction = () => {
     let possibleEnemyActions = this.state.currentEnemyAbilities;
@@ -187,69 +179,59 @@ class BattlePage extends Component {
     }
   };
 
-
-
-  
-
-
-
-
-
-
-  handlePlayedCards = (playedCards) => {
-
+  handlePlayedCards = playedCards => {
     let damage = 0;
     let armor = this.state.userArmor;
     let selfDamage = 0;
-    let health = this.state.userHealth
+    let health = this.state.userHealth;
     let newEnemyArmor;
-    let userHealValue = 0
-    let newHealth = 0
-    playedCards.forEach((card) => {
+    let userHealValue = 0;
+    let newHealth = 0;
+    
+    playedCards.forEach(card => {
       switch (card.id) {
         case 1:
           damage += card.damage;
 
-          break
+          break;
 
         case 2:
-          armor += card.armor
+          armor += card.armor;
 
-          break
+          break;
         case 3:
           damage += card.damage;
-          selfDamage += card.selfDamage
+          selfDamage += card.selfDamage;
           break;
         case 4:
-
-          damage = damage * card.multiplier
+          damage = damage * card.multiplier;
           break;
         case 5:
-          newEnemyArmor = 0
+          newEnemyArmor = 0;
           this.setState({
             currentEnemyArmor: newEnemyArmor
-          })
+          });
           break;
         case 6:
-          userHealValue = card.healValue
-          newHealth = this.state.userHealth + userHealValue
+          userHealValue = card.healValue;
+          newHealth = this.state.userHealth + userHealValue;
           this.setState({
             userHealth: newHealth
-          })
+          });
           break;
         case 7:
           this.setState({
             frozen: true
-          })
+          });
           return;
       }
     });
     if (damage) {
-      let { newArmor, newHealth, gameWon } = this.userAttack(damage)
-      let turnOver = !this.state.userTurnOver
-      let tempHealth = health - selfDamage
+      let { newArmor, newHealth, gameWon } = this.userAttack(damage);
+      let turnOver = !this.state.userTurnOver;
+      let tempHealth = health - selfDamage;
       if (gameWon) {
-        let tempWin = this.state.winCount + 1
+        let tempWin = this.state.winCount + 1;
         this.setState({
           winCount: tempWin
         });
@@ -260,11 +242,9 @@ class BattlePage extends Component {
         userTurnOver: turnOver,
         userArmor: armor,
         userHealth: tempHealth
-      })
-    }
-
-    else {
-      let turnOver = !this.state.userTurnOver
+      });
+    } else {
+      let turnOver = !this.state.userTurnOver;
       this.setState({
         userTurnOver: turnOver,
         userArmor: armor
@@ -272,10 +252,25 @@ class BattlePage extends Component {
     }
   };
 
+  componentDidUpdate(){
+    if(this.state.userTurnOver==true) {
+
+      setTimeout(function(){
+           this.setState({userTurnOver:false});
+      }.bind(this),2000); 
+ }
+  }
+
+
   render() {
+    const userTurnOver = this.state.userTurnOver;
+    let enemyHealth = this.state.currentEnemyHealth;
+
+    
     return (
       <div>
         <div className="landing2"></div>
+        <div className="rain"></div>
         <div className="row bars">
           <div className="health col-md-6">
             <div>
@@ -286,7 +281,9 @@ class BattlePage extends Component {
               ></progress>
             </div>
             <p className="hb">Player:{this.state.userHealth}</p>
-
+            <p className="hb">Armor:{this.state.userArmor}</p>
+            <img  className="player" src={Player}></img>
+            
           </div>
           <div className="emhealth col-md-6">
             <div>
@@ -297,24 +294,34 @@ class BattlePage extends Component {
               ></progress>
             </div>
             <p className="em">Enemy:{this.state.currentEnemyHealth}</p>
+            <p className="em">Armor:{this.state.currentEnemyArmor}</p>
           </div>
-        </div>
-        <div className="d-flex carddeck justify-content-center">
-          {this.state.userTurnOver ? "true" : "false"}
-          <br></br>
 
-          <br></br>
-          <DeckBrain readPlayed={this.handlePlayedCards}
+        </div>
+          <div>
+            <div>
+              {userTurnOver ? (
+                <img className="emm1" src={FireEm} ></img>
+                ) : (
+                  <img className="emm" src={IdleEm}></img>
+                  )}
+                    {
+                (this.state.currentEnemyHealth <= 0)
+                  ? <img className="emm1" src={Death} ></img>
+                  : null
+              }
+              
+            </div>
+          </div>
+        <div className="d-flex carddeck justify-content-center">
+          <DeckBrain
+            readPlayed={this.handlePlayedCards}
             hasWon={this.state.winCount}
-           
-           />
-            {this.renderRedirect()}
+          />
+          {this.renderRedirect()}
         </div>
       </div>
     );
   }
 }
 export default BattlePage;
-
-
-

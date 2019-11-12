@@ -38,7 +38,7 @@
     background-color: #fff;
     text-shadow: 2px 2px #52c0da;
   }
-  .landing3 {
+  .landing6 {
     position: absolute;
     top: 0;
     left: 0;
@@ -47,7 +47,7 @@
     /* height: 68vh; */
     background-size: 100% 100%;
     background-position: center center;
-    background-image: url(./raina.gif);
+    background-image: url(./awar.jpg);
   }
   .decks {
     margin: 0px !important;

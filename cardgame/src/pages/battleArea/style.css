@@ -53,11 +53,7 @@
   margin: 0px !important;
   /* background-color: black !important; */
 }
-.carddeck {
-  position: absolute;
-  bottom: -5% !important;
 
-}
 .bars {
   position: fixed;
   top: 0;
@@ -78,7 +74,37 @@
   color: #ffffff;
 }
 .raise:hover{
-  transform: translate(0px, -100px);
-  transition: all .2s ease-in-out;
+  transform: translate(0px, -60px) !important;
+  transition: all .4s ease-in-out;
+}
+.raise1:hover{
+  transform: translate(0px, 100px) !important;
+  transition: all .4s ease-in-out;
 }
 /* .grow:hover { transform: scale(2.1); } */
+.emm{
+  /* background-image: url(./fire.gif); */
+  position: fixed;
+  left: 603px;
+  top: 460px;
+  width: 20%;
+  height:30%;
+  /* height: 68vh; */
+  background-size: 100% 100%;
+  background-position: center center;
+}
+.emm1{
+  /* background-image: url(./idle.gif); */
+  position: fixed;
+  left: 603px;
+  top: 460px;
+  width: 20%;
+  height:30%;
+  /* height: 68vh; */
+  background-size: 100% 100%;
+  background-position: center center;
+}
+.player{
+height: 20%;
+image-rendering: pixelated;
+}

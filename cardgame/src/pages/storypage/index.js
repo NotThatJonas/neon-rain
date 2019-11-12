@@ -16,9 +16,9 @@ class Storypage extends Component {
               <h1 className="neon3 head">Neon Rain</h1>
             </div>
             <br></br>
-            <div className=" neon2 nes">
+            <div className=" neon26 nes">
               
-              <p> The year is 2116 and the the United Nations of Governments are on the brink of war with Coalition of Corporations. The gaberial virus has shattered the loosely held peace and both parties are desperately looking for the cure as they believe it will give them the winning hand when the conflict begins.</p>
+              <p> The year is 2116 and the the United Nations of Governments are on the brink of war with Coalition of Corporations. The gabriel virus has shattered the loosely held peace and both parties are desperately looking for the cure as they believe it will give them the winning hand when the conflict begins.</p>
               <br></br>
             <p>Rumor on the street is that Dr. Drea Wheetman has found a cure but is going to hand it off to an unknown organization that believes the cure should be free for everyone</p>
             <br></br>
