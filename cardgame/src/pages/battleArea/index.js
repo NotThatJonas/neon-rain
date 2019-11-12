@@ -27,7 +27,8 @@ class BattlePage extends Component {
     userTurnOver: false,
     frozen: false,
     redirect: false,
-    enemyAction: ""
+    enemyAction: "",
+    maxEnemyHealth:0
   };
 
   componentDidMount() {
@@ -53,6 +54,7 @@ class BattlePage extends Component {
     let newEnemyAttack = currentEnemy.attack;
     let newEnemyArmorGain = currentEnemy.armorGain;
     this.setState({
+      maxEnemyHealth:currentEnemyHealth,
       winCount: localWins,
       currentEnemyHealth: currentEnemyHealth,
       currentEnemyArmor: currentEnemyArmor,
@@ -336,7 +338,7 @@ class BattlePage extends Component {
               <progress
                 className="nes-progress emhealth is-error"
                 value={this.state.currentEnemyHealth}
-                max="100"
+                max={this.state.maxEnemyHealth}
               ></progress>
             </div>
             <p className="em">Enemy:{this.state.currentEnemyHealth}</p>
