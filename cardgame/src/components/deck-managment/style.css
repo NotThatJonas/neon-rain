@@ -9,12 +9,17 @@
   bottom: 0% !important;
 }
 .playCard {
+
   width: 20%;
   padding: 10px;
   padding-top: 100px !important;
   transform: scale(0.7);
 }
 .handArea {
+  margin-top: 0px;
+  top: 650px;
+ 
+  margin-top: 0%;
   display: flex;
   justify-content: center;
 }
@@ -30,8 +35,15 @@
 
 .stuffs{
   transform: scale(0.7);
+  padding: 100%;
 }
 .row2 {
   margin-right: -60px;
   margin-left: -60px;
+}
+.buzz{
+  position: fixed;
+  top: 0;
+  /* left: 0;
+  right: 0; */
 }

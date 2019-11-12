@@ -221,9 +221,12 @@ newestDeck=deckJson
       // <div className="nes-container decks is-rounded">
       
         <div id="gameArea stuffs">
+          
+          <div className="playArea">{playArea.length ? playArea : null}</div>
+
           <div className="row d-flex justify-content-center">
             <button
-              className="nes-pointer endTurn neon4 mb-3 nes-btn"
+              className="nes-pointer buzz  endTurn neon4 mb-3 nes-btn"
               onClick={this.endTurn}
             >
               End Turn
@@ -232,11 +235,28 @@ newestDeck=deckJson
         
         </div>
           </div>
-          <div>
 
-    </div>
-          <div className="playArea">{playArea.length ? playArea : null}</div>
-          <div className="handArea no-gutters">{hand.length ? hand : null}</div>
+
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+  
+          <br/>
+          
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <br/>
+          <div className="handArea ">{hand.length ? hand : null}</div>
+
         </div>
       // </div>
     )
