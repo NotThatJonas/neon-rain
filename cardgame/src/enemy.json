@@ -15,7 +15,7 @@
         "name": "Enemy 2",
         "health":100,
         "actions":[1,2],
-        "attack": 15,
+        "attack": 12,
         "armor": 0,
         "armorGain":5,
         "image": "TBD",
@@ -24,11 +24,11 @@
     {
         "id": 2,
         "name": "Enemy 3",
-        "health":200,
+        "health":175,
         "actions":[1,2],
-        "attack": 25,
-        "armor": 8,
-        "armorGain":2,
+        "attack": 17,
+        "armor": 0,
+        "armorGain":8,
         "image": "TBD",
         "text": "This enemy is the second challenger"
     }
