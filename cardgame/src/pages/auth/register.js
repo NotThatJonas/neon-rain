@@ -24,7 +24,7 @@ const newUser = {
 console.log(newUser);
 Axios.post("https://expressneonrain.herokuapp.com/api/users/register", newUser).then(data => {
   console.log(data);
-  this.props.history.push("/battlepage")
+  this.props.history.push("/storypage")
 }).catch (err=> {
   console.log(err);
   alert("Username already exists or password could not be validated")

@@ -4,7 +4,14 @@ import Cards from "../cards";
 import newCardsFromJson from "../../newCards.json";
 import PlayArea from "../playArea";
 import style from "./style.css";
+var UserInitialDeck = require('../../cards.json');
+
 class DrawBrain extends Component {
+  constructor(props){
+    super(props)
+    console.log('tessssst');
+    
+  }
   state = {
     newCards: [],
     tempHand: [],
@@ -12,11 +19,14 @@ class DrawBrain extends Component {
     drawArea: [],
     turnEnded: false,
     finalNewCards:[],
+    currentDeck: UserInitialDeck, //make this an or statement
     deckBuilt: false
   };
 
+
   componentDidMount() {
 
+  console.log('tessssst', this.currentDeck);
     const newCardsShuffled = this.shuffleCards(newCardsFromJson);
     console.log(newCardsShuffled);
 

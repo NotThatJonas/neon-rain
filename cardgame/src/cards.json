@@ -87,7 +87,7 @@
         "name": "Spell One",
         "image": "TBD",
         "effect": null,
-        "text": "This spell increase the damage of your next attacks is multiplied by 3",
+        "text": "This spell increase the damage of your first attack played this round by 3x",
         "multiplier":3,
         "class": "battleMage",
         "type": "Spell" 

@@ -5,6 +5,9 @@ import "./style.css";
 import DrawBrain from "../../components/drawCards";
 import { booleanLiteral } from "@babel/types";
 import { Redirect } from 'react-router-dom'
+var UserInitialDeck = require('../../cards.json');
+
+
 
 
 class Save extends Component {
@@ -13,7 +16,7 @@ class Save extends Component {
     super();
     this.state = {
       username: "",
-      userDeck: [],
+      // userDeck: UserInitialDeck,
       winCount: 0,
       deckDrawn: false
     };
@@ -21,7 +24,18 @@ class Save extends Component {
   }
 onChange = e => {
     this.setState({ [e.target.id]: e.target.value });
+    // console.log(this.userDeck);
+    
   };
+
+  handleOnClick = e => {
+    Axios.post("/gamestate", this.userDeck).then(data => {
+            console.log(data);
+            this.props.history.push("/battlepage")
+          }).catch (err=> {
+            console.log(err);    
+          })
+  }
 
 drawn = (p) => {
   if(p){
@@ -64,7 +78,6 @@ render() {
     return (
       
       <div>
-        
       <div className="d-flex carddeck justify-content-center" >
           
           {this.state.userTurnOver ? "true" : "false"}
@@ -81,7 +94,8 @@ render() {
           </button>
           </Link>
           <Link to="/battlepage">
-          <button type="button" className="btn mb-3 neon1 nes-pointer nes-btn">
+
+          <button onClick={this.handleOnClick} type="button" className="btn mb-3 neon1 nes-pointer nes-btn">
             Save &amp; Continue
           </button>
           </Link>
@@ -94,7 +108,9 @@ render() {
     else {
       return (
         <DrawBrain readPlayed={this.handlePlayedCards} 
+        // currentDeck={this.userDeck}
           drawn = {this.drawn}
+  
           />
   
     )

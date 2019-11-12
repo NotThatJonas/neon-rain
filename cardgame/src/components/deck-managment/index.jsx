@@ -27,7 +27,6 @@ class DeckBrain extends Component {
     let newestDeck=[]
     let newCards=[]
   
-
     if (localStorage.getItem('userNewDeck')!=null){
    newCards = JSON.parse(localStorage.getItem('userNewDeck'))
     console.log(newCards);
@@ -39,6 +38,7 @@ newestDeck=deckJson
     }
       console.log(newestDeck)
     const shuffledDeck = this.shuffleCards(newestDeck);
+
     console.log(shuffledDeck);
     this.setState(
       {
@@ -49,6 +49,7 @@ newestDeck=deckJson
     );
   }
 // }
+
 
 // saveCards = deck =>{
 
