@@ -7,6 +7,7 @@ import { booleanLiteral } from "@babel/types";
 import { Redirect } from "react-router-dom";
 var UserInitialDeck = require("../../cards.json");
 
+
 class Save extends Component {
   constructor() {
     super();
@@ -23,15 +24,62 @@ class Save extends Component {
   };
 
   handleOnClick = e => {
-    Axios.post("/gamestate", this.userDeck)
-      .then(data => {
-        console.log(data);
-        this.props.history.push("/battlepage");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
+
+    Axios.post("/gamestate", this.userDeck).then(data => {
+            console.log(data);
+            this.props.history.push("/battlepage")
+            // .then( Axios.put(`/api/Users/${id}`, body) )
+          }).catch (err=> {
+            console.log(err);    
+          })
+  }
+
+drawn = (p) => {
+  if(p){
+    this.setState({
+      deckDrawn:true
+    })
+  }
+}
+
+renderRedirect = () => {
+  if (this.state.redirect) {
+    return <Redirect to='/battlepage' />
+  }
+}
+
+// onSubmit = e => {
+//     e.preventDefault();
+
+// const userDeck = {
+//       username: this.state.username,
+//       userDeck: this.state.userDeck,
+//       winCount: this.state.winCount
+//     };
+//     Axios.post("/gamestate", userDeck).then(data => {
+//       console.log(data);
+//       this.props.history.push("/battlepage")
+//     }).catch (err=> {
+//       console.log(err);    
+//     })
+// console.log(userDeck);
+//   };
+
+
+render() {
+    if(this.state.deckDrawn){
+    return (
+      
+      <div>
+      <div className="d-flex carddeck justify-content-center" >
+          
+          {this.state.userTurnOver ? "true" : "false"}
+          <br></br>
+
+          <br></br>
+        
+        </div>
+
 
   drawn = p => {
     if (p) {

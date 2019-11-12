@@ -55,6 +55,9 @@ class DrawBrain extends Component {
   
   };
 
+
+
+
 //   addNewCards = ()=> {
 
 //       const userData = {
@@ -88,6 +91,8 @@ class DrawBrain extends Component {
     }, this.drawNewCards);
     if(this.state.finalNewCards.length === 3){
       // this.addNewCards(this.state.finalNewCards)
+      console.log(this.state.finalNewCards)
+      localStorage.setItem('userNewDeck', JSON.stringify(this.state.finalNewCards));
      this.props.drawn(true)
      
     }
