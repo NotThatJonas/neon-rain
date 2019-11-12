@@ -45,8 +45,8 @@ class BattlePage extends Component {
     
     // this.atStartOfBattle()
     let currentEnemy = enemies[localWins];
-
-
+    
+    
     let currentEnemyHealth = currentEnemy.health;
     let currentEnemyArmor = currentEnemy.armor;
     let newEnemyAbilities = currentEnemy.actions;

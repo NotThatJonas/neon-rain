@@ -32,6 +32,7 @@ onChange = e => {
     Axios.post("/gamestate", this.userDeck).then(data => {
             console.log(data);
             this.props.history.push("/battlepage")
+            // .then( Axios.put(`/api/Users/${id}`, body) )
           }).catch (err=> {
             console.log(err);    
           })
@@ -67,10 +68,6 @@ renderRedirect = () => {
 //     })
 // console.log(userDeck);
 //   };
-
-
-
-
 
 
 render() {
