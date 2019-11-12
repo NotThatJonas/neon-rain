@@ -1,7 +1,7 @@
 [
     {
         "id": 1,
-        "name": "Attack",
+        "name": "DoS Attack",
         "damage": 10,
         "image": "https://cdn1.vectorstock.com/i/1000x1000/72/45/two-crossed-light-neon-swords-laser-sabers-war-vector-19807245.jpg",
         "text": "This Card does 10 damage to the enemy",
@@ -11,7 +11,7 @@
 
     {
         "id": 2,
-        "name": "Defense",
+        "name": "Syntax Error",
         "armor": 6,
         "image": "TBD",
         "text": "This card increase your armor by 6 pts until next turn",
@@ -20,7 +20,7 @@
     },
     {
         "id": 3,
-        "name": "Spell Three",
+        "name": "Hijack",
         "image": "TBD",
         "effect": null,
         "text": "This spell does 15 direct damage to the enemy, you take 8 damage",
@@ -31,7 +31,7 @@
     },
     {
         "id": 4,
-        "name": "Spell Four",
+        "name": "$x Splicer",
         "image": "TBD",
         "effect": null,
         "text": "This spell increase the damage of your previous attacks by 4",
@@ -41,7 +41,7 @@
     },
     {
         "id": 5,
-        "name": "Spell five",
+        "name": "BruteForce Armor",
         "image": "TBD",
         "effect": null,
         "text": "This spell removes all enemy armor",
@@ -50,7 +50,7 @@
     },
     {
         "id": 6,
-        "name": "Spell six",
+        "name": "Server Backup",
         "image": "TBD",
         "effect": null,
         "text": "This spell heals you for 10",
@@ -60,7 +60,7 @@
     },
     {
         "id": 7,
-        "name": "Spell seven",
+        "name": "Merge Conflict",
         "image": "TBD",
         "effect": null,
         "text": "This spell makes the enemy skip their next turn",
